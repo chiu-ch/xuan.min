@@ -1,0 +1,3102 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<meta name="theme-color" content="#030205"/>
+<title>閒人案內所 ｜ 官方傳送門</title>
+<style>
+    :root {
+        --bg-dark: #040206;
+        --neon-gold: #ffb020;
+        --neon-purple: #b366ff;
+        --neon-orange: #ff7324;
+        --neon-blue: #00f0ff;
+        --neon-pink: #ff2a6d;
+        --neon-cyan: #00f3ff;
+        --text-light: #ffffff;
+        --text-gray: #b5b0c4;
+        --text-muted: #8d879e;
+        --card-glass: rgba(16, 12, 30, 0.88);
+        --border-glow: rgba(179, 102, 255, 0.25);
+        --ease-premium: cubic-bezier(0.23, 1, 0.32, 1);
+        --transition-smooth: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    body.theme-amber {
+        --bg-dark: #070503;
+        --neon-gold: #ffb703;
+        --neon-purple: #fb8500;
+        --neon-orange: #e85d04;
+        --neon-blue: #ffd166;
+        --neon-cyan: #ffb703;
+        --card-glass: rgba(26, 16, 10, 0.9);
+        --border-glow: rgba(255, 183, 3, 0.38);
+    }
+    body.theme-cyan {
+        --bg-dark: #02070a;
+        --neon-gold: #00f2fe;
+        --neon-purple: #4cc9f0;
+        --neon-orange: #48bfe3;
+        --neon-blue: #7209b7;
+        --neon-cyan: #00f2fe;
+        --card-glass: rgba(8, 20, 35, 0.9);
+        --border-glow: rgba(0, 242, 254, 0.38);
+    }
+    body.theme-pink {
+        --bg-dark: #080205;
+        --neon-gold: #f72585;
+        --neon-purple: #b5179e;
+        --neon-orange: #7209b7;
+        --neon-blue: #4cc9f0;
+        --neon-cyan: #f72585;
+        --card-glass: rgba(24, 10, 22, 0.9);
+        --border-glow: rgba(247, 37, 133, 0.38);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft JhengHei", sans-serif; -webkit-tap-highlight-color: transparent; }
+
+    body {
+        background-color: var(--bg-dark);
+        background-image: 
+            radial-gradient(circle at 50% 0%, rgba(179, 102, 255, 0.28) 0%, transparent 60%),
+            radial-gradient(circle at 100% 20%, rgba(255, 115, 36, 0.12) 0%, transparent 50%),
+            radial-gradient(circle at 0% 80%, rgba(0, 240, 255, 0.12) 0%, transparent 50%);
+        color: var(--text-light);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 36px 14px;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    .container { width: 100%; max-width: 480px; text-align: center; position: relative; z-index: 1; }
+
+    .system-badge {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.35);
+        padding: 8px 18px; border-radius: 24px; font-size: 12px; font-weight: 700;
+        color: var(--neon-cyan); margin-bottom: 18px; box-shadow: 0 0 20px rgba(0, 240, 255, 0.12);
+        letter-spacing: 0.8px; backdrop-filter: blur(10px);
+    }
+    .system-badge span { width: 7px; height: 7px; background: var(--neon-cyan); border-radius: 50%; box-shadow: 0 0 10px var(--neon-cyan); animation: pulseGlow 1.8s infinite alternate; }
+
+    .marquee-box {
+        background: rgba(255, 176, 32, 0.08); border: 1px solid rgba(255, 176, 32, 0.35);
+        border-radius: 18px; padding: 12px 18px; font-size: 12.5px; color: #ffebc2;
+        margin-bottom: 24px; overflow: hidden; white-space: nowrap; position: relative;
+        box-shadow: inset 0 1px 3px rgba(255,255,255,0.08); backdrop-filter: blur(12px); font-weight: 600;
+    }
+    .marquee-content {
+        display: inline-block;
+        padding-left: 100%;
+        animation: marqueeScroll 28s linear infinite;
+    }
+    @keyframes marqueeScroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+
+    .header { margin-bottom: 24px; position: relative; }
+    .theme-toggle-btn {
+        position: absolute; top: 0; right: 0; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+        color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        cursor: pointer; font-size: 16px; transition: var(--transition-smooth); backdrop-filter: blur(16px);
+    }
+    .theme-toggle-btn:hover { transform: scale(1.1) rotate(15deg); border-color: var(--neon-gold); background: rgba(255,255,255,0.15); }
+
+    .logo-container { position: relative; width: 88px; height: 88px; margin: 0 auto 14px; }
+    .logo-pulse { position: absolute; width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue)); animation: pulseGlow 3s infinite alternate var(--ease-premium); filter: blur(14px); opacity: 0.85; }
+    .logo-inner { position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px; background: #0c061a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: inset 0 0 25px rgba(179, 102, 255, 0.45); }
+    .title { font-size: 28px; font-weight: 900; letter-spacing: 5px; margin-bottom: 6px; background: linear-gradient(90deg, #ffffff 10%, var(--neon-gold), var(--neon-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 2px 15px rgba(255, 115, 36, 0.35)); }
+    .subtitle { font-size: 11.5px; color: var(--text-gray); letter-spacing: 5px; text-transform: uppercase; opacity: 0.85; font-weight: 700; }
+
+    /* 主導航結構 (3-3-1排版) */
+    .tab-navigation {
+        display: grid; 
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 8px;
+        background: rgba(8, 5, 18, 0.92); 
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px; 
+        padding: 9px; 
+        margin-bottom: 24px; 
+        backdrop-filter: blur(25px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.04);
+    }
+    .tab-btn {
+        padding: 12px 6px; 
+        background: rgba(255, 255, 255, 0.02); 
+        border: 1px solid rgba(255, 255, 255, 0.06); 
+        color: var(--text-gray);
+        font-size: 12.5px; 
+        font-weight: 800; 
+        border-radius: 16px; 
+        cursor: pointer; 
+        transition: var(--transition-smooth);
+        text-align: center; 
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+    }
+    .tab-btn.active {
+        color: #ffffff;
+        background: linear-gradient(135deg, rgba(179, 102, 255, 0.5) 0%, rgba(0, 240, 255, 0.25) 100%);
+        border: 1px solid rgba(179, 102, 255, 0.75);
+        box-shadow: 0 0 22px rgba(179, 102, 255, 0.4);
+        text-shadow: 0 0 8px rgba(255,255,255,0.7);
+        transform: translateY(-2px);
+    }
+
+    .sub-tab-navigation { 
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        background: rgba(0, 0, 0, 0.55); 
+        border: 1px solid rgba(255, 255, 255, 0.1); 
+        border-radius: 18px; 
+        padding: 7px; 
+        margin-bottom: 20px; 
+    }
+    .sub-tab-btn { 
+        width: 100%;
+        padding: 11px 4px; 
+        background: rgba(255,255,255,0.03); 
+        border: 1px solid rgba(255,255,255,0.07); 
+        color: var(--text-gray); 
+        font-size: 11.5px; 
+        font-weight: 700; 
+        border-radius: 14px; 
+        cursor: pointer; 
+        transition: var(--transition-smooth); 
+        text-align: center; 
+        white-space: nowrap;
+    }
+    .sub-tab-btn.active { 
+        color: #ffffff; 
+        background: rgba(255, 255, 255, 0.18); 
+        border: 1px solid rgba(255, 255, 255, 0.45); 
+        text-shadow: 0 0 8px rgba(255,255,255,0.6); 
+        box-shadow: 0 0 14px rgba(255,255,255,0.15); 
+    }
+
+    .card-box {
+        background: var(--card-glass);
+        border: 1px solid var(--border-glow);
+        border-radius: 28px;
+        padding: 26px 20px;
+        margin-bottom: 24px;
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+        text-align: left;
+    }
+    .card-box.phone-box { border-color: rgba(0, 240, 255, 0.35); box-shadow: 0 0 38px rgba(0, 240, 255, 0.16), 0 20px 50px rgba(0, 0, 0, 0.65); }
+
+    .card-header { font-size: 15px; font-weight: 800; color: var(--neon-gold); margin-bottom: 18px; display: flex; align-items: center; gap: 12px; letter-spacing: 1.5px; text-shadow: 0 0 12px rgba(255, 176, 32, 0.45); }
+    .card-header.blue-header { color: var(--neon-blue); text-shadow: 0 0 12px rgba(0, 240, 255, 0.45); }
+    .card-header::after { content: ''; flex-grow: 1; height: 1px; background: linear-gradient(to right, rgba(255, 176, 32, 0.35), transparent); }
+    .card-header.blue-header::after { background: linear-gradient(to right, rgba(0, 240, 255, 0.35), transparent); }
+
+    .hero-highlight-card {
+        display: flex !important;
+        align-items: center !important;
+        padding: 20px 22px !important;
+        background: linear-gradient(135deg, rgba(255, 115, 36, 0.28) 0%, rgba(179, 102, 255, 0.22) 100%) !important;
+        border: 2px solid var(--neon-orange) !important;
+        border-radius: 24px !important;
+        color: #ffffff !important;
+        text-decoration: none !important;
+        transition: var(--transition-smooth) !important;
+        box-shadow: 0 0 35px rgba(255, 115, 36, 0.35) !important;
+        margin-bottom: 20px !important;
+        position: relative;
+        overflow: hidden;
+    }
+    .hero-highlight-card::before {
+        content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+        transform: rotate(30deg); pointer-events: none;
+    }
+    .hero-highlight-card:hover {
+        transform: translateY(-3px) scale(1.02) !important;
+        border-color: var(--neon-gold) !important;
+        box-shadow: 0 0 50px rgba(255, 176, 32, 0.6) !important;
+    }
+    .hero-highlight-icon {
+        font-size: 36px !important;
+        margin-right: 16px !important;
+        flex-shrink: 0 !important;
+        filter: drop-shadow(0 0 12px var(--neon-orange)) !important;
+        animation: pulseGlow 1.5s infinite alternate;
+    }
+
+    .primary-card {
+        display: flex !important;
+        align-items: center !important;
+        flex-direction: row !important;
+        padding: 18px 20px !important;
+        background: linear-gradient(90deg, rgba(0, 240, 255, 0.16) 0%, rgba(18, 12, 35, 0.82) 100%) !important;
+        border: 1px solid var(--neon-blue) !important;
+        border-radius: 20px !important;
+        color: #ffffff !important;
+        text-decoration: none !important;
+        transition: var(--transition-smooth) !important;
+        box-shadow: 0 0 24px rgba(0, 240, 255, 0.16) !important;
+        margin-bottom: 12px !important;
+    }
+    .primary-card * { text-decoration: none !important; }
+    .primary-card:hover {
+        background: linear-gradient(90deg, rgba(0, 240, 255, 0.28) 0%, rgba(179, 102, 255, 0.16) 100%) !important;
+        border-color: #ffffff !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 0 35px rgba(0, 240, 255, 0.45) !important;
+    }
+    .primary-icon {
+        font-size: 26px !important;
+        margin-right: 16px !important;
+        flex-shrink: 0 !important;
+        filter: drop-shadow(0 0 10px var(--neon-blue)) !important;
+    }
+
+    .tag-pill-container { 
+        display: flex; 
+        gap: 8px; 
+        overflow-x: auto; 
+        margin-bottom: 18px; 
+        padding-bottom: 6px; 
+        flex-wrap: nowrap; 
+    }
+    .tag-pill-container::-webkit-scrollbar { display: none; }
+    .tag-pill {
+        background: rgba(179, 102, 255, 0.16); border: 1px solid rgba(179, 102, 255, 0.45);
+        color: #f3effc; padding: 7px 15px; border-radius: 20px; font-size: 12px; font-weight: 700;
+        cursor: pointer; white-space: nowrap; transition: var(--transition-smooth);
+        flex-shrink: 0;
+    }
+    .tag-pill.active { background: var(--neon-cyan); border-color: var(--neon-cyan); color: #030205; box-shadow: 0 0 16px rgba(0,240,255,0.55); font-weight: 800; }
+
+    .search-box-wrapper { margin-bottom: 16px; }
+    .search-input {
+        width: 100%; background: rgba(16, 12, 30, 0.92); border: 1px solid rgba(0, 240, 255, 0.5);
+        border-radius: 16px; color: #fff; padding: 13px 18px; font-size: 13.5px; font-weight: 600; outline: none;
+        transition: var(--transition-smooth); box-shadow: inset 0 2px 6px rgba(0,0,0,0.45);
+    }
+    .search-input:focus { border-color: var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.45), inset 0 2px 6px rgba(0,0,0,0.45); }
+
+    .filter-box {
+        display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 22px;
+        background: rgba(8, 5, 18, 0.7); padding: 14px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .filter-item { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+    .filter-item label { font-size: 12px; font-weight: 800; color: var(--neon-gold); letter-spacing: 0.5px; }
+    .filter-item select {
+        background: rgba(16, 12, 30, 0.92); border: 1px solid rgba(179, 102, 255, 0.4);
+        border-radius: 14px; color: #ffffff; padding: 11px 12px; font-size: 12.5px; font-weight: 700; outline: none; cursor: pointer;
+        appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg fill='%2300f0ff' height='10' viewBox='0 0 24 24' width='10' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+        background-repeat: no-repeat; background-position: right 10px center; padding-right: 22px; transition: var(--transition-smooth);
+    }
+    .filter-item select:focus { border-color: var(--neon-cyan); box-shadow: 0 0 18px rgba(0, 240, 255, 0.35); }
+
+    .featured-section { margin-bottom: 24px; }
+    .featured-title { 
+        font-size: 13.5px; font-weight: 900; color: var(--neon-gold); margin-bottom: 12px; 
+        display: flex; align-items: center; gap: 8px; letter-spacing: 1.2px; 
+        text-shadow: 0 0 12px rgba(255,176,32,0.45); 
+    }
+    .featured-grid { display: flex; flex-direction: column; gap: 10px; }
+    
+    .featured-chip-vertical {
+        border-radius: 18px; padding: 14px 18px;
+        cursor: pointer; transition: var(--transition-smooth);
+        display: flex; align-items: center; justify-content: space-between;
+        position: relative; overflow: hidden; backdrop-filter: blur(20px);
+    }
+    
+    .featured-chip-vertical.rank-1 {
+        background: linear-gradient(135deg, rgba(255, 176, 32, 0.25) 0%, rgba(16, 12, 30, 0.98) 100%);
+        border: 1.5px solid rgba(255, 176, 32, 0.7);
+        box-shadow: 0 0 30px rgba(255, 176, 32, 0.35), inset 0 0 18px rgba(255, 176, 32, 0.15);
+    }
+    .featured-chip-vertical.rank-1::before { content: ''; position: absolute; top: 0; left: 0; width: 4.5px; height: 100%; background: var(--neon-gold); box-shadow: 0 0 14px var(--neon-gold); }
+
+    .featured-chip-vertical.rank-2 {
+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.2) 0%, rgba(16, 12, 30, 0.98) 100%);
+        border: 1.5px solid rgba(0, 240, 255, 0.6);
+        box-shadow: 0 0 26px rgba(0, 240, 255, 0.25), inset 0 0 15px rgba(0, 240, 255, 0.12);
+    }
+    .featured-chip-vertical.rank-2::before { content: ''; position: absolute; top: 0; left: 0; width: 4.5px; height: 100%; background: var(--neon-cyan); box-shadow: 0 0 14px var(--neon-cyan); }
+
+    .featured-chip-vertical.rank-3 {
+        background: linear-gradient(135deg, rgba(179, 102, 255, 0.25) 0%, rgba(16, 12, 30, 0.98) 100%);
+        border: 1.5px solid rgba(179, 102, 255, 0.6);
+        box-shadow: 0 0 26px rgba(179, 102, 255, 0.25), inset 0 0 15px rgba(0, 240, 255, 0.12);
+    }
+    .featured-chip-vertical.rank-3::before { content: ''; position: absolute; top: 0; left: 0; width: 4.5px; height: 100%; background: var(--neon-purple); box-shadow: 0 0 14px var(--neon-purple); }
+
+    .featured-chip-vertical:hover { transform: translateY(-2px) scale(1.015); filter: brightness(1.18); }
+
+    .partner-grid { display: flex; flex-direction: column; gap: 14px; }
+    .partner-card {
+        background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 22px; padding: 18px 20px;
+        transition: var(--transition-smooth); cursor: pointer; position: relative; overflow: hidden;
+        box-shadow: 0 14px 38px rgba(0,0,0,0.6);
+    }
+    .partner-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--neon-purple); opacity: 0; transition: var(--transition-smooth); }
+    .partner-card:hover { border-color: rgba(179, 102, 255, 0.8); background: rgba(179, 102, 255, 0.09); transform: translateY(-2px); box-shadow: 0 18px 45px rgba(179, 102, 255, 0.3); }
+    .partner-card:hover::before { opacity: 1; }
+    .partner-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .partner-name { font-size: 16px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 10px; }
+    .partner-rating { font-size: 12px; color: var(--neon-gold); font-weight: 700; background: rgba(255, 176, 32, 0.18); padding: 3px 10px; border-radius: 14px; border: 1px solid rgba(255, 176, 32, 0.45); }
+    .partner-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+    .partner-tag { font-size: 11px; padding: 3px 9px; border-radius: 10px; font-weight: 700; }
+    .tag-gender { background: rgba(0, 240, 255, 0.25); color: var(--neon-cyan); border: 1px solid rgba(0, 240, 255, 0.5); }
+    .tag-region { background: rgba(255, 176, 32, 0.25); color: var(--neon-gold); border: 1px solid rgba(255, 176, 32, 0.5); }
+    .tag-ai { background: rgba(179, 102, 255, 0.25); color: #edd6ff; border: 1px solid rgba(179, 102, 255, 0.5); }
+    .tag-badge { background: linear-gradient(135deg, rgba(255,176,32,0.28), rgba(255,115,36,0.28)); color: var(--neon-gold); border: 1px solid rgba(255,176,32,0.55); }
+    .partner-intro { font-size: 13px; color: var(--text-gray); line-height: 1.75; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    .card-action-bar { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 12px; }
+    .card-btn-group { display: flex; gap: 8px; }
+    .card-fav-btn {
+        background: rgba(255, 42, 109, 0.18); border: 1px solid rgba(255, 42, 109, 0.5);
+        color: var(--neon-pink); font-size: 12px; font-weight: 700; padding: 7px 13px; border-radius: 14px; cursor: pointer; transition: var(--transition-smooth);
+    }
+    .card-fav-btn:hover { background: var(--neon-pink); color: #fff; box-shadow: 0 0 16px var(--neon-pink); }
+    .card-copy-btn {
+        background: rgba(0, 240, 255, 0.18); border: 1px solid rgba(0, 240, 255, 0.5);
+        color: var(--neon-cyan); font-size: 12.5px; font-weight: 700; padding: 7px 15px; border-radius: 14px; cursor: pointer; transition: var(--transition-smooth);
+    }
+    .card-copy-btn:hover { background: var(--neon-cyan); color: #030205; box-shadow: 0 0 18px rgba(0, 240, 255, 0.6); }
+
+    .safety-card {
+        background: linear-gradient(135deg, rgba(255, 42, 109, 0.2) 0%, rgba(16, 12, 30, 0.9) 100%);
+        border: 1.5px solid rgba(255, 42, 109, 0.65); border-radius: 26px; padding: 22px; margin-bottom: 22px; text-align: left;
+        box-shadow: 0 0 45px rgba(255, 42, 109, 0.2);
+    }
+    .safety-title { font-size: 15px; font-weight: 800; color: var(--neon-pink); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; text-shadow: 0 0 14px rgba(255,42,109,0.5); }
+    .safety-desc { font-size: 13px; color: #f4effc; line-height: 1.85; margin-bottom: 16px; }
+    .safety-btn {
+        display: inline-flex; align-items: center; justify-content: center; width: 100%;
+        background: rgba(255, 42, 109, 0.3); border: 1px solid var(--neon-pink); color: #ffffff;
+        padding: 13px; border-radius: 16px; font-size: 13.5px; font-weight: 800; text-decoration: none; transition: var(--transition-smooth);
+        box-shadow: 0 0 22px rgba(255,42,109,0.4);
+    }
+    .safety-btn:hover { background: var(--neon-pink); color: #fff; box-shadow: 0 0 38px var(--neon-pink); transform: translateY(-2px); }
+
+    .tool-box { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 24px; padding: 22px; margin-bottom: 22px; text-align: left; box-shadow: inset 0 1px 4px rgba(255,255,255,0.07); }
+    .tool-title { font-size: 14.5px; font-weight: 800; color: var(--neon-gold); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .tool-input { width: 100%; background: rgba(16, 12, 30, 0.92); border: 1px solid rgba(255, 176, 32, 0.5); border-radius: 16px; color: #fff; padding: 13px 18px; font-size: 13.5px; outline: none; margin-bottom: 12px; transition: var(--transition-smooth); }
+    .tool-input:focus { border-color: var(--neon-gold); box-shadow: 0 0 18px rgba(255,176,32,0.45); }
+    .tool-btn { background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue)); border: none; color: #fff; font-size: 13px; font-weight: 800; padding: 13px 20px; border-radius: 16px; cursor: pointer; width: 100%; margin-top: 10px; transition: var(--transition-smooth); box-shadow: 0 10px 28px rgba(179,102,255,0.5); }
+    .tool-btn:hover { opacity: 0.95; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(179,102,255,0.65); }
+
+    .policy-list { display: flex; flex-direction: column; gap: 14px; }
+    .policy-item {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 18px 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.04);
+        transition: var(--transition-smooth);
+        text-align: left;
+    }
+    .policy-item:hover { border-color: rgba(255, 255, 255, 0.22); transform: translateY(-2px); }
+    .policy-item.notice-cyan { border-left: 5px solid var(--neon-cyan); background: linear-gradient(135deg, rgba(0, 240, 255, 0.08) 0%, rgba(16, 12, 30, 0.92) 100%); }
+    .policy-item.notice-blue { border-left: 5px solid var(--neon-blue); background: linear-gradient(135deg, rgba(0, 240, 255, 0.08) 0%, rgba(16, 12, 30, 0.92) 100%); }
+    .policy-item.notice-pink { border-left: 5px solid var(--neon-pink); background: linear-gradient(135deg, rgba(255, 42, 109, 0.12) 0%, rgba(16, 12, 30, 0.92) 100%); }
+    .policy-item.notice-gold { border-left: 5px solid var(--neon-gold); background: linear-gradient(135deg, rgba(255, 176, 32, 0.1) 0%, rgba(16, 12, 30, 0.92) 100%); }
+    .policy-item-title { font-weight: 800; color: #ffffff; margin-bottom: 8px; font-size: 14.5px; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .policy-item-desc { color: #cfc9dd; font-size: 13px; line-height: 1.85; }
+
+    .danger-red { color: #ff2a6d !important; font-weight: 800; }
+    .highlight-gold { color: var(--neon-gold) !important; font-weight: 800; }
+    .highlight-cyan { color: var(--neon-cyan) !important; font-weight: 800; }
+    .badge-tag-red { display: inline-block; background: rgba(255,42,109,0.22); color: #ff2a6d; border: 1px solid rgba(255,42,109,0.55); padding: 2px 8px; border-radius: 8px; font-size: 11px; font-weight: 800; margin-right: 4px; }
+    .badge-tag-gold { display: inline-block; background: rgba(255,176,32,0.2); color: #ffb020; border: 1px solid rgba(255,176,32,0.5); padding: 2px 8px; border-radius: 8px; font-size: 11px; font-weight: 800; margin-right: 4px; }
+
+    #incident-modal {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 3, 8, 0.92);
+        backdrop-filter: blur(18px); z-index: 10006; display: none; align-items: center; justify-content: center; padding: 18px;
+    }
+
+    #onboarding-modal {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(4, 2, 8, 0.96);
+        backdrop-filter: blur(24px); z-index: 30000; display: none; align-items: center; justify-content: center; padding: 16px;
+    }
+    .onboarding-content {
+        background: linear-gradient(145deg, rgba(20, 12, 35, 0.96), rgba(8, 4, 16, 0.99));
+        border: 2px solid var(--neon-gold); border-radius: 32px; width: 100%; max-width: 440px;
+        padding: 30px 24px; text-align: left; box-shadow: 0 0 70px rgba(255, 176, 32, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+        animation: fadeInUp 0.4s var(--ease-premium) forwards; max-height: 92vh; overflow-y: auto;
+    }
+
+    #booking-modal {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 3, 8, 0.92);
+        backdrop-filter: blur(18px); z-index: 10000; display: none; align-items: center; justify-content: center; padding: 18px;
+    }
+    .modal-content {
+        background: #0c061a; border: 1.5px solid var(--neon-cyan); border-radius: 32px; width: 100%; max-width: 400px;
+        padding: 30px 26px; text-align: left; box-shadow: 0 0 65px rgba(0, 240, 255, 0.45); animation: fadeInUp 0.35s var(--ease-premium) forwards; max-height: 90vh; overflow-y: auto;
+    }
+    .modal-title { font-size: 16.5px; font-weight: 800; color: var(--neon-cyan); margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; text-shadow: 0 0 14px rgba(0,240,255,0.45); }
+    .modal-close { background: none; border: none; color: var(--text-gray); font-size: 20px; cursor: pointer; transition: 0.2s; }
+    .modal-close:hover { color: #fff; }
+
+    #partner-detail-modal {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 3, 8, 0.92);
+        backdrop-filter: blur(18px); z-index: 10002; display: none; align-items: flex-end; justify-content: center; padding: 0;
+    }
+    .partner-sheet {
+        background: #0c061a; border-top: 1.5px solid var(--neon-purple); border-radius: 36px 36px 0 0; width: 100%; max-width: 480px;
+        padding: 32px 24px 48px; text-align: left; box-shadow: 0 -22px 65px rgba(179,102,255,0.45); animation: slideUpSheet 0.35s var(--ease-premium) forwards; max-height: 90vh; overflow-y: auto;
+    }
+    @keyframes slideUpSheet { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+    #toast-notification {
+        position: fixed; bottom: 35px; left: 50%; transform: translateX(-50%) translateY(140px);
+        background: rgba(16, 12, 30, 0.99); border: 1px solid var(--neon-cyan); color: #fff;
+        padding: 13px 26px; border-radius: 30px; font-size: 13px; font-weight: 700;
+        box-shadow: 0 0 35px rgba(0, 240, 255, 0.5); z-index: 20000; transition: transform 0.35s var(--ease-premium);
+        pointer-events: none; white-space: nowrap; backdrop-filter: blur(16px);
+    }
+    #toast-notification.show { transform: translateX(-50%) translateY(0); }
+
+    .link-card { display: flex; align-items: center; padding: 18px 20px; background: rgba(255, 255, 255, 0.015); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; text-decoration: none; color: #ffffff; margin-bottom: 12px; transition: var(--transition-smooth); position: relative; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.45); }
+    .link-card.match-card { border: 1.5px solid rgba(255, 115, 36, 0.55); background: linear-gradient(90deg, rgba(255, 115, 36, 0.14) 0%, rgba(16, 12, 30, 0.65) 100%); }
+    .link-card.chat-card { border: 1.5px solid rgba(179, 102, 255, 0.55); background: linear-gradient(90deg, rgba(179, 102, 255, 0.14) 0%, rgba(16, 12, 30, 0.65) 100%); }
+    .link-card:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,0.7); }
+    .link-card.match-card:hover { border-color: var(--neon-orange); box-shadow: 0 16px 40px rgba(255,115,36,0.35); }
+    .link-card.chat-card:hover { border-color: var(--neon-purple); box-shadow: 0 16px 40px rgba(179,102,255,0.35); }
+
+    .link-icon { font-size: 26px; margin-right: 16px; width: 34px; display: flex; align-items: center; justify-content: center; }
+    .link-content { text-align: left; flex-grow: 1; }
+    .link-title { font-size: 14.5px; font-weight: 800; margin-bottom: 3px; letter-spacing: 0.3px; }
+    .link-desc { font-size: 12px; color: var(--text-gray); }
+    .badge { font-size: 10px; padding: 3px 9px; border-radius: 14px; font-weight: 700; background: rgba(255, 115, 36, 0.22); color: #ffb06e; border: 1px solid rgba(255, 115, 36, 0.45); }
+
+    .grid-rooms { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+    .room-item { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 52px; background: rgba(255, 255, 255, 0.035); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; color: #f4effc; text-decoration: none; font-size: 12px; font-weight: 700; transition: var(--transition-smooth); box-shadow: 0 8px 18px rgba(0,0,0,0.35); }
+    .room-item span { font-size: 7.5px; color: var(--text-gray); margin-top: 2px; font-weight: 600; }
+    .room-item:hover { background: rgba(179, 102, 255, 0.28); border-color: var(--neon-orange); color: #fff; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(255,115,36,0.35); }
+    .room-item.busy { border-color: var(--neon-pink) !important; background: rgba(255, 42, 109, 0.25) !important; position: relative; box-shadow: 0 0 20px rgba(255,42,109,0.45); }
+    .room-item.busy::after { content: '●'; position: absolute; top: 4px; right: 6px; font-size: 9px; color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink); }
+
+    .workflow-steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+    .step-item { display: flex; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.09); border-radius: 16px; padding: 12px 14px; gap: 12px; box-shadow: 0 6px 16px rgba(0,0,0,0.35); }
+    .step-num { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue)); display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 900; color: #fff; flex-shrink: 0; box-shadow: 0 0 14px rgba(179,102,255,0.45); }
+    .step-content { text-align: left; }
+    .step-title { font-size: 13.5px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+    .step-desc { font-size: 12px; color: var(--text-gray); line-height: 1.6; }
+
+    .footer { margin-top: 48px; font-size: 11px; color: #9c97aa; letter-spacing: 2.5px; font-weight: 500; opacity: 0.65; }
+    .tab-panel, .sub-tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeIn 0.45s var(--ease-premium) forwards; }
+    .sub-tab-panel.active { display: block; animation: fadeInSub 0.35s var(--ease-premium) forwards; }
+
+    #ai-float-btn {
+        position: fixed; bottom: 24px; right: 24px; width: 58px; height: 58px;
+        background: linear-gradient(135deg, #b366ff, #00f0ff); border-radius: 50%;
+        display: flex; align-items: center; justify-content: center; font-size: 26px;
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.4); cursor: pointer; z-index: 9999;
+        transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1); border: 1.5px solid rgba(255, 255, 255, 0.3);
+    }
+    #ai-float-btn:hover { transform: scale(1.12) rotate(6deg); }
+
+    #ai-chat-box {
+        position: fixed; bottom: 92px; right: 24px; width: 350px; height: 500px;
+        background: rgba(16, 12, 30, 0.96); border: 1.5px solid rgba(179, 102, 255, 0.6);
+        border-radius: 26px; backdrop-filter: blur(40px); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.92);
+        z-index: 9998; display: none; flex-direction: column; overflow: hidden;
+    }
+    #ai-chat-box.active { display: flex; animation: fadeInUp 0.35s var(--ease-premium) forwards; }
+    .ai-chat-header { padding: 15px 18px; background: linear-gradient(90deg, rgba(179, 102, 255, 0.28), rgba(0, 240, 255, 0.14)); border-bottom: 1px solid rgba(255, 255, 255, 0.12); display: flex; justify-content: space-between; align-items: center; color: var(--neon-gold); font-weight: 800; font-size: 13.5px; }
+    .header-actions { display: flex; gap: 8px; align-items: center; }
+    .ai-action-btn { background: none; border: none; color: #9c97aa; font-size: 14px; cursor: pointer; transition: 0.2s; }
+    .ai-action-btn:hover { color: #fff; }
+    .ai-chat-messages { flex-grow: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; font-size: 12.5px; color: #f4effc; text-align: left; }
+    .ai-msg { padding: 10px 15px; border-radius: 16px; max-width: 88%; word-break: break-word; white-space: pre-wrap; line-height: 1.6; }
+    .ai-msg.bot { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); align-self: flex-start; color: #d6f2f1; }
+    .ai-msg.user { background: linear-gradient(135deg, rgba(179, 102, 255, 0.55), rgba(0, 240, 255, 0.32)); border: 1px solid rgba(179,102,255,0.55); align-self: flex-end; color: #fff; }
+
+    .ai-quick-chips { display: flex; gap: 8px; padding: 10px 14px; background: rgba(8, 5, 18, 0.99); overflow-x: auto; border-top: 1px solid rgba(255,255,255,0.09); }
+    .ai-quick-chips::-webkit-scrollbar { display: none; }
+    .ai-quick-chips button { background: rgba(179, 102, 255, 0.25); border: 1px solid rgba(179, 102, 255, 0.55); color: #f4effc; border-radius: 12px; padding: 5px 11px; font-size: 11px; font-weight: 700; white-space: nowrap; cursor: pointer; transition: var(--transition-smooth); }
+    .ai-quick-chips button:hover { background: rgba(0, 240, 255, 0.35); border-color: var(--neon-blue); color: #fff; }
+
+    .ai-chat-input-area { padding: 12px; background: rgba(8, 5, 18, 0.97); border-top: 1px solid rgba(255, 255, 255, 0.12); display: flex; gap: 8px; }
+    .ai-chat-input-area input { flex-grow: 1; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 14px; padding: 10px 14px; color: #fff; font-size: 12.5px; outline: none; }
+    .ai-chat-input-area button { background: linear-gradient(135deg, #b366ff, #00f0ff); border: none; border-radius: 14px; padding: 0 16px; color: #fff; font-weight: 800; cursor: pointer; font-size: 12.5px; box-shadow: 0 0 16px rgba(179,102,255,0.5); }
+
+    #back-to-top-btn {
+        position: fixed; bottom: 92px; right: 24px; width: 42px; height: 42px;
+        background: rgba(16, 12, 30, 0.92); border: 1.5px solid var(--neon-cyan);
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        color: var(--neon-cyan); font-size: 17px; font-weight: 900; cursor: pointer; z-index: 998;
+        opacity: 0; visibility: hidden; transition: var(--transition-smooth);
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.35); backdrop-filter: blur(10px);
+    }
+    #back-to-top-btn.show { opacity: 1; visibility: visible; }
+    #back-to-top-btn:hover { background: var(--neon-cyan); color: #030205; transform: translateY(-3px); }
+
+    .ai-typing-indicator {
+        display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px;
+        background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(0, 240, 255, 0.3); align-self: flex-start;
+    }
+    .ai-typing-dot {
+        width: 6px; height: 6px; background: var(--neon-cyan); border-radius: 50%;
+        animation: typingPulse 1.2s infinite ease-in-out;
+    }
+    .ai-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .ai-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingPulse {
+        0%, 100% { opacity: 0.2; transform: scale(0.8); }
+        50% { opacity: 1; transform: scale(1.2); }
+    }
+    .ai-card-btn {
+        margin-top: 8px; padding: 6px 14px; background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(179, 102, 255, 0.2));
+        border: 1px solid var(--neon-cyan); border-radius: 12px; color: #fff; font-size: 11.5px; font-weight: 800;
+        cursor: pointer; transition: var(--transition-smooth); display: inline-block;
+    }
+    .ai-card-btn:hover { background: var(--neon-cyan); color: #030205; box-shadow: 0 0 14px var(--neon-cyan); }
+
+    @keyframes pulseGlow { 0% { transform: scale(0.94); box-shadow: 0 0 10px rgba(0, 240, 255, 0.25); } 100% { transform: scale(1.06); box-shadow: 0 0 25px rgba(0, 240, 255, 0.55); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="system-badge"><span></span> 系統運行中 ｜ 24H 智慧媒合 (PWA已啟動)</div>
+<div class="marquee-box">
+    <div class="marquee-content">📢 【官方告示】30%定金包含20%多維營運與10%履約/補償 ｜ 🚗 <strong style="color: #ff2a6d;">嚴禁搭乘私家車</strong> ｜ 💬 日常交流請至【閒人聊天室】 ｜ 🔞 年滿 18 歲方可參與✨</div>
+</div>
+
+<div class="header">
+    <button class="theme-toggle-btn" onclick="triggerHaptic(20); toggleTheme();" title="循環切換主題色彩">🎨</button>
+    <div class="logo-container">
+        <div class="logo-pulse"></div>
+        <div class="logo-inner">👻</div>
+    </div>
+    <h1 class="title">閒人案內所</h1>
+    <p class="subtitle">VIP Lounge Portal</p>
+</div>
+
+<!-- 主導航 -->
+<div class="tab-navigation">
+    <button class="tab-btn active" onclick="triggerHaptic(15); switchTab('home');">🏠 主頁</button>
+    <button class="tab-btn" onclick="triggerHaptic(15); switchTab('partners');">👥 出租人</button>
+    <button class="tab-btn" onclick="triggerHaptic(15); switchTab('clients');">👤 委託人</button>
+    <button class="tab-btn" onclick="triggerHaptic(15); switchTab('history');">📂 足跡</button>
+    <button class="tab-btn" onclick="triggerHaptic(15); switchTab('rooms');">📞 招待</button>
+    <button class="tab-btn" onclick="triggerHaptic(15); switchTab('notice');">📢 公告</button>
+    <button class="tab-btn" onclick="triggerHaptic(15); switchTab('tutorial');" style="grid-column: span 3;">📺 新手影音教學專區 (YT & TK)</button>
+</div>
+
+<!-- 模組 1：【主頁】 -->
+<div class="tab-panel active" id="panel-home">
+
+<!-- 整合式群組引導區塊 -->
+<div class="card-box" style="background: linear-gradient(135deg, rgba(255, 115, 36, 0.12) 0%, rgba(179, 102, 255, 0.08) 100%); border: 2px solid var(--neon-orange); border-radius: 28px; padding: 20px; margin-bottom: 24px; box-shadow: 0 0 40px rgba(255, 115, 36, 0.25);">
+    
+    <!-- 點擊加入按鈕 -->
+    <a class="hero-highlight-card" href="https://line.me/ti/g2/AyLxcfZMsmv-vg788A1BGUDK3RQ1wvcVawmzEw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" onclick="triggerHaptic(20)" style="margin-bottom: 14px !important;">
+        <div class="hero-highlight-icon">🔥</div>
+        <div style="text-align: left; flex-grow: 1;">
+            <div style="font-size: 16px; font-weight: 900; color: #fff; margin-bottom: 3px; letter-spacing: 0.6px;">⭐ 點我立刻加入：委託．出租核心社群群組！</div>
+            <div style="font-size: 12px; color: #ffd6a5; font-weight: 700;">尋找優質陪伴服務、出租人名片直接張貼，委託需求請先至官方 LINE 審核發布 ➔</div>
+        </div>
+    </a>
+
+    <!-- 使用說明文字區塊 -->
+    <div style="text-align: left; background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 115, 36, 0.3); border-radius: 20px; padding: 16px 18px;">
+        <div style="font-size: 13.5px; font-weight: 900; color: var(--neon-orange); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            💡 群組怎麼用？看這裡最快：
+        </div>
+        <div style="font-size: 12.5px; color: #f4effc; line-height: 1.85;">
+            • <strong style="color: var(--neon-gold);">👤 想當出租人（賺取時間價值）</strong>：進群後，你可以直接把自己的「出租人名片」貼 in 群組裡讓大家看到！<br>
+            • <strong style="color: var(--neon-cyan);">🔍 想找人委託（委託陪伴）</strong>：請先到官網填寫需求單並傳給官方 LINE，等我們審核通過後，就會幫你統一發到群組囉！
+        </div>
+    </div>
+
+</div>
+<!-- 👑 TOP 3 榜單 -->
+<div class="card-box" style="background: linear-gradient(135deg, rgba(255, 176, 32, 0.08) 0%, rgba(179, 102, 255, 0.06) 100%); border-color: rgba(255, 176, 32, 0.4); box-shadow: 0 0 25px rgba(255, 176, 32, 0.15);">
+<div class="card-header" style="color: var(--neon-gold); text-shadow: 0 0 12px rgba(255, 176, 32, 0.45);">👑 本週質感星級 ｜ TOP 3 出租人榜單</div>
+<div style="font-size: 12.5px; color: var(--text-gray); margin-bottom: 12px; text-align: left;">
+    高滿意度口碑推薦！點擊卡片快速查看個人詳細介紹與聯絡：
+</div>
+<div class="featured-grid" id="home-featured-grid-container"></div>
+</div>
+
+<div class="card-box">
+<div class="card-header">🏢 其他功能社群</div>
+<a class="link-card chat-card" href="https://line.me/ti/g2/e6dpmauumRi3WjFxnmdOvXQJrDAGCRfEN4YxSw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" onclick="triggerHaptic(15)">
+<div class="link-icon">💬</div>
+<div class="link-content">
+<div class="link-title">閒人聊天室 👻</div>
+<div class="link-desc">日常閒聊, 交流與找尋同好的溫馨角落</div>
+</div>
+</a>
+<a class="link-card chat-card" href="https://www.threads.net/@idler_lounge" target="_blank" onclick="triggerHaptic(15)" style="border-color: rgba(255, 255, 255, 0.4); background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(16, 12, 30, 0.65) 100%);">
+<div class="link-icon">🧵</div>
+<div class="link-content">
+<div class="link-title" style="color: #ffffff;">官方 Threads (脆) 🧵</div>
+<div class="link-desc">追蹤我們的官方 Threads，接收最新動態與宣傳內容 ➔</div>
+</div>
+</a>
+<a class="link-card room-card" href="https://line.me/ti/g2/yTUYTMHUoV1Dbs6UFvddBsYXef7qJTfHASS1jw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" onclick="triggerHaptic(15)">
+<div class="link-icon">💼</div>
+<div class="link-content" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+<div>
+<div class="link-title">會議室</div>
+<div class="link-desc">內部行政討論與通知專區</div>
+</div>
+<span class="badge">限出租人</span>
+</div>
+</a>
+</div>
+
+<!-- 聯絡官方客服 -->
+<div class="card-box" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.15) 0%, rgba(179, 102, 255, 0.2) 100%); border: 2px solid var(--neon-cyan); box-shadow: 0 0 35px rgba(0, 240, 255, 0.35);">
+<div class="card-header" style="color: var(--neon-cyan); font-size: 15px; text-shadow: 0 0 12px rgba(0,240,255,0.6);">⚡ 官方核心服務通道</div>
+<a class="primary-card" href="https://lin.ee/9R2sLhB" target="_blank" onclick="triggerHaptic(20)" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.25) 0%, rgba(18, 12, 35, 0.9) 100%) !important; border: 1.5px solid var(--neon-cyan) !important; box-shadow: 0 0 25px rgba(0, 240, 255, 0.3) !important; margin-bottom: 0 !important;">
+<div class="primary-icon" style="font-size: 34px !important; margin-right: 16px !important; filter: drop-shadow(0 0 10px var(--neon-cyan)) !important; animation: pulseGlow 1.5s infinite alternate;">💬</div>
+<div style="text-align: left; flex-grow: 1;">
+<div style="font-size: 16.5px; font-weight: 900; color: #fff; margin-bottom: 3px; letter-spacing: 0.5px;">點我立即：聯絡官方客服 ➔</div>
+<div style="font-size: 12.5px; color: #b2ced4; font-weight: 700;">全天候專人接待，快速處理各項諮詢、申訴與媒合</div>
+</div>
+</a>
+</div>
+
+<!-- 創辦人專區 -->
+<div class="card-box" style="background: rgba(179, 102, 255, 0.03); border-color: rgba(179, 102, 255, 0.25);">
+<div class="card-header" style="color: var(--neon-purple); text-shadow: 0 0 10px rgba(179,102,255,0.4);">👑 創辦人專區</div>
+<a class="primary-card" href="https://line.me/ti/p/mR19KggePp" target="_blank" onclick="triggerHaptic(15)" style="background: linear-gradient(90deg, rgba(179, 102, 255, 0.16) 0%, rgba(18, 12, 35, 0.82) 100%) !important; border-color: var(--neon-purple) !important; margin-bottom: 0 !important;">
+<div class="primary-icon">👨‍💼</div>
+<div style="text-align: left; flex-grow: 1;">
+<div style="font-size: 14.5px; font-weight: 800; color: #fff;">聯絡所長 ➔ 創辦人通道</div>
+<div style="font-size: 12px; color: #edd6ff;">備註：吉祥物 真的找不到人可以找我但是不一定會回</div>
+</div>
+</a>
+</div>
+
+<div class="safety-card" style="margin-top: 18px; margin-bottom: 22px;">
+    <div class="safety-title">🛡️ 安全守護與信譽防護</div>
+    <div class="safety-desc">本社群全面採用匿名隱私保護與信用評級機制。線下見面若遇突發狀況、越線騷擾或安全疑慮，請立即離開現場並點擊下方按鈕通報管管。</div>
+    <div style="display: flex; gap: 8px;">
+        <button class="safety-btn" onclick="triggerHaptic(15); openIncidentModal();" style="flex:1; background: rgba(0, 240, 255, 0.25); border-color: var(--neon-cyan);">⚠️ 異常/不適單通報</button>
+        <a class="safety-btn" href="https://line.me/ti/p/L1iM3COUPl" target="_blank" onclick="triggerHaptic(20)" style="flex:1;">🚨 SOS 緊急通報</a>
+    </div>
+</div>
+
+<!-- 🧮 專業委託金額試算與官方發單生成器 -->
+<div class="card-box" id="bottom-calc-box" style="background: linear-gradient(135deg, rgba(255, 176, 32, 0.06) 0%, rgba(0, 240, 255, 0.05) 100%); border: 1.5px solid var(--neon-gold); box-shadow: 0 0 35px rgba(255, 176, 32, 0.2);">
+    <div class="card-header" style="color: var(--neon-gold); font-size: 15.5px; margin-bottom: 14px;">
+        🧮 委託金額試算與官方發單格式生成器
+    </div>
+    <div style="font-size: 12.5px; color: var(--text-gray); margin-bottom: 16px; line-height: 1.7;">
+        選擇方案與自由填寫時間，系統自動換算金額與差額，並產生官方標準發單通知：
+    </div>
+
+    <!-- 方案選擇與雙方名字 -->
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 14px;">
+        <div class="filter-item" style="grid-column: span 2;">
+            <label>1. 委託 / 通知方案模式 (下拉選單)</label>
+            <select id="calc-mode" onchange="toggleCalcModeFields()" style="padding: 12px; font-weight: 800;">
+                <option value="offline">【線下委託｜30% 定金制】</option>
+                <option value="online">【線上委託｜全額預付制】</option>
+                <option value="postpone">【行程順延 / 更改時間通知 (含多/少時數與補退差額計算)】</option>
+                <option value="client_request">【委託需求單格式 (發至官方LINE)】</option>
+            </select>
+        </div>
+        <div class="filter-item">
+            <label>2. 委託人姓名</label>
+            <input type="text" id="calc-client" class="tool-input" placeholder="例如：R融" oninput="updateCalcAndTemplate()" style="margin-bottom:0;">
+        </div>
+        <div class="filter-item" id="calc-lender-wrapper">
+            <label id="calc-lender-label">3. 出租人姓名 (自由填寫)</label>
+            <div id="lender-input-container">
+                <input type="text" id="calc-lender" class="tool-input" placeholder="例如：Chiu" oninput="updateCalcAndTemplate()" style="margin-bottom:0;">
+            </div>
+        </div>
+    </div>
+
+    <!-- 正常預約輸入項 (線下/線上) -->
+    <div id="calc-normal-fields" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 14px;">
+        <div class="filter-item">
+            <label>4. 計費單位 (時薪 / 計次)</label>
+            <select id="calc-unit" class="tool-input" style="padding:10px; margin-bottom:0;" onchange="toggleUnitFields()">
+                <option value="時薪">時薪計費</option>
+                <option value="次">計次收費</option>
+            </select>
+        </div>
+        <div class="filter-item">
+            <label id="calc-amount-label">5. 金額數值 (NT$)</label>
+            <input type="number" id="calc-amount" class="tool-input" placeholder="輸入時薪或金額" oninput="updateCalcAndTemplate()" style="margin-bottom:0;">
+        </div>
+        <div class="filter-item" style="grid-column: span 2;">
+            <label>6. 選擇預約日期</label>
+            <input type="date" id="calc-date" class="tool-input" onchange="updateCalcAndTemplate()" style="margin-bottom:0;">
+        </div>
+
+        <!-- 質感時間/起訖時間選擇區塊 (無論時薪或計次皆顯示並支援自由選填) -->
+        <div class="filter-item" style="grid-column: span 2;" id="calc-time-wrapper">
+            <label>7. 預約起訖時間 (質感時間選單與微調)</label>
+            <div class="time-picker-card">
+                <div class="time-picker-row">
+                    <span class="time-icon">⏰</span>
+                    <div class="time-input-group">
+                        <label>開始時間</label>
+                        <input type="time" id="calc-time-start" class="styled-time-input" value="18:00" onchange="updateCalcAndTemplate()">
+                    </div>
+                    <span class="time-divider">➔</span>
+                    <div class="time-input-group">
+                        <label>結束時間</label>
+                        <input type="time" id="calc-time-end" class="styled-time-input" value="21:00" onchange="updateCalcAndTemplate()">
+                    </div>
+                </div>
+                <!-- 快速時數微調按鈕 -->
+                <div class="time-quick-actions">
+                    <button type="button" class="time-chip-btn" onclick="adjustTimeDuration(1)">+1小時</button>
+                    <button type="button" class="time-chip-btn" onclick="adjustTimeDuration(2)">+2小時</button>
+                    <button type="button" class="time-chip-btn" onclick="adjustTimeDuration(3)">+3小時</button>
+                    <button type="button" class="time-chip-btn reset" onclick="resetTimeToDefault()">預設3小時</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-item" style="grid-column: span 2;">
+            <label>8. 車資處理選項 (下拉選單)</label>
+            <select id="calc-transport" onchange="updateCalcAndTemplate()" style="padding: 11px; font-weight: 700;">
+                <option value="委託人提供報銷">委託人提供報銷</option>
+                <option value="出租人自行吸收">出租人自行吸收</option>
+                <option value="車資可議">車資可議</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- 順延專用輸入項 -->
+    <div id="calc-postpone-fields" style="display: none; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 14px;">
+        <div class="filter-item" style="grid-column: span 2;">
+            <label>4. 原預約日期與時段</label>
+            <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 6px;">
+                <input type="date" id="calc-orig-date" class="tool-input" onchange="updateCalcAndTemplate()" style="flex:1; margin-bottom:0;">
+            </div>
+            <div class="time-picker-card" style="padding: 10px 14px;">
+                <div class="time-picker-row">
+                    <span class="time-icon">⏳</span>
+                    <input type="time" id="calc-orig-start" class="styled-time-input" value="18:00" onchange="updateCalcAndTemplate()">
+                    <span class="time-divider">至</span>
+                    <input type="time" id="calc-orig-end" class="styled-time-input" value="21:00" onchange="updateCalcAndTemplate()">
+                </div>
+            </div>
+        </div>
+        <div class="filter-item" style="grid-column: span 2;">
+            <label>5. 順延後日期與時段</label>
+            <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 6px;">
+                <input type="date" id="calc-new-date" class="tool-input" onchange="updateCalcAndTemplate()" style="flex:1; margin-bottom:0;">
+            </div>
+            <div class="time-picker-card" style="padding: 10px 14px;">
+                <div class="time-picker-row">
+                    <span class="time-icon">✨</span>
+                    <input type="time" id="calc-new-start" class="styled-time-input" value="19:00" onchange="updateCalcAndTemplate()">
+                    <span class="time-divider">至</span>
+                    <input type="time" id="calc-new-end" class="styled-time-input" value="22:00" onchange="updateCalcAndTemplate()">
+                </div>
+            </div>
+        </div>
+        <div class="filter-item" style="grid-column: span 2;">
+            <label>6. 原委託總金額基準 (NT$)</label>
+            <input type="number" id="calc-postpone-amount" class="tool-input" placeholder="輸入原總金額（例如：1200）" oninput="updateCalcAndTemplate()" style="margin-bottom:0;">
+        </div>
+        <div class="filter-item" style="grid-column: span 2;">
+            <label>7. 車資處理選項 (下拉選單)</label>
+            <select id="calc-postpone-transport" onchange="updateCalcAndTemplate()" style="padding: 11px; font-weight: 700;">
+                <option value="委託人提供報銷">委託人提供報銷</option>
+                <option value="出租人自行吸收">出租人自行吸收</option>
+                <option value="車資可議">車資可議</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- 委託需求單專用輸入項 (時薪與計次皆可自由選填時間) -->
+    <div id="calc-client-request-fields" style="display: none; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 14px;">
+        <div class="filter-item">
+            <label>性別需求 (下拉選單)</label>
+            <select id="req-gender" class="tool-input" style="padding:10px; margin-bottom:0;" onchange="updateCalcAndTemplate()">
+                <option value="不拘">不拘</option>
+                <option value="女性出租人">女性出租人</option>
+                <option value="男性出租人">男性出租人</option>
+            </select>
+        </div>
+        <div class="filter-item">
+            <label>服務地點 (自由填寫)</label>
+            <input type="text" id="req-location" class="tool-input" placeholder="例如：台南市東區" oninput="updateCalcAndTemplate()" style="margin-bottom:0;">
+        </div>
+        <div class="filter-item">
+            <label>計費模式 (時薪 / 計次)</label>
+            <select id="req-unit" class="tool-input" style="padding:10px; margin-bottom:0;" onchange="toggleReqUnitFields()">
+                <option value="時薪">時薪計費</option>
+                <option value="次">計次收費</option>
+            </select>
+        </div>
+        <div class="filter-item">
+            <label>預約日期</label>
+            <input type="date" id="req-date" class="tool-input" onchange="updateCalcAndTemplate()" style="margin-bottom:0;">
+        </div>
+
+        <!-- 需求單時間起訖區塊 (無論時薪計次皆顯示) -->
+        <div class="filter-item" style="grid-column: span 2;" id="req-time-wrapper">
+            <label>預約起訖時間 (自由選擇)</label>
+            <div class="time-picker-card" style="padding: 10px 14px;">
+                <div class="time-picker-row">
+                    <span class="time-icon">⏰</span>
+                    <input type="time" id="req-time-start" class="styled-time-input" value="14:00" onchange="updateCalcAndTemplate()">
+                    <span class="time-divider">➔</span>
+                    <input type="time" id="req-time-end" class="styled-time-input" value="17:00" onchange="updateCalcAndTemplate()">
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-item" style="grid-column: span 2;">
+            <label>委託項目 / 目的 (自由填寫)</label>
+            <input type="text" id="req-project" class="tool-input" placeholder="例如：陪同逛展覽、喝咖啡聊天" oninput="updateCalcAndTemplate()" style="margin-bottom:0;">
+        </div>
+        <div class="filter-item" style="grid-column: span 2;">
+            <label>希望條件 (自由填寫)</label>
+            <input type="text" id="req-condition" class="tool-input" placeholder="例如：好溝通、守時" oninput="updateCalcAndTemplate()" style="margin-bottom:0;">
+        </div>
+        <div class="filter-item">
+            <label id="req-budget-label">預算報酬 (時薪/總額 NT$)</label>
+            <input type="number" id="req-budget" class="tool-input" placeholder="例如：1200" oninput="updateCalcAndTemplate()" style="margin-bottom:0;">
+        </div>
+        <div class="filter-item">
+            <label>車資選項 (下拉選單)</label>
+            <select id="req-transport" class="tool-input" style="padding:10px; margin-bottom:0;" onchange="updateCalcAndTemplate()">
+                <option value="委託人提供報銷">委託人提供報銷</option>
+                <option value="出租人自行吸收">出租人自行吸收</option>
+                <option value="車資可議">車資可議</option>
+            </select>
+        </div>
+        <div class="filter-item" style="grid-column: span 2;">
+            <label>指定出租人姓名 (非必要 / 備註)</label>
+            <input type="text" id="req-lender-remark" class="tool-input" placeholder="例如：指定 Chiu (若無則填不指定)" oninput="updateCalcAndTemplate()" style="margin-bottom:0;">
+        </div>
+    </div>
+
+    <!-- 金流與差額即時面板 -->
+    <div id="calc-breakdown-panel" style="background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 14px; margin-bottom: 14px;">
+        <div style="font-size: 12px; color: var(--neon-gold); font-weight: 800; margin-bottom: 6px;">💡 試算與差額解析：</div>
+        <div id="calc-breakdown-output" style="font-size: 12.5px; color: #f4effc; line-height: 1.8;">請填寫相關金額與時段以進行試算。</div>
+    </div>
+
+    <!-- 新增：注意事項宣告區塊 -->
+    <div style="background: rgba(255,176,32,0.08); border: 1px dashed rgba(255,176,32,0.5); border-radius: 14px; padding: 12px 14px; margin-bottom: 14px; text-align: left;">
+        <div style="font-size: 12px; font-weight: 900; color: var(--neon-gold); margin-bottom: 4px;">📌 【重要注意事項】</div>
+        <div style="font-size: 11.5px; color: #ffebc2; line-height: 1.7;">
+            預約須完成定金支付才算正式成立。若定金未付，此預約單視同未成立，出租人保有優先安排檔期及不另行保留時間之權利。
+        </div>
+    </div>
+
+    <!-- 自動生成的完整官方格式 -->
+    <div style="font-size: 12px; color: var(--neon-cyan); font-weight: 800; margin-bottom: 6px;">📄 官方標準發單格式預覽（可直接一鍵發送至 LINE）：</div>
+    <textarea id="calc-template-output" readonly style="width: 100%; height: 210px; background: rgba(8,5,18,0.95); border: 1px solid rgba(0,240,255,0.4); border-radius: 14px; color: #cfc9dd; padding: 12px; font-size: 12px; line-height: 1.7; resize: none; outline: none; margin-bottom: 10px;"></textarea>
+    <button class="tool-btn" onclick="openAgreementModal()" style="margin-top:0; background: linear-gradient(135deg, var(--neon-gold), var(--neon-orange)); color: #030205; font-weight: 900;">🚀 複製並直接開啟 LINE 發送草稿</button>
+</div>
+
+<!-- 💳 主頁專屬：官方快速支付專區 -->
+<div class="card-box" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.08) 0%, rgba(179, 102, 255, 0.06) 100%); border: 1.5px solid var(--neon-cyan); box-shadow: 0 0 35px rgba(0, 240, 255, 0.2);">
+    <div class="card-header" style="color: var(--neon-cyan); text-shadow: 0 0 12px rgba(0, 240, 255, 0.45);">💳 官方快速支付專區 ｜ TWQR & 街口支付</div>
+    <div style="font-size: 12.5px; color: var(--text-gray); margin-bottom: 14px; line-height: 1.7;">
+        進行 30% 預約定金或相關款項支付時，可隨時使用各大行動支付 App 掃描下方專屬 QR Code：
+    </div>
+    <div style="text-align: center; background: rgba(0,0,0,0.45); padding: 18px; border-radius: 20px; border: 1.5px dashed rgba(0,240,255,0.45);">
+        <img src="123456_3.jpg" alt="TWQR 支付 QR Code" style="width: 160px; height: auto; border-radius: 14px; border: 2px solid var(--neon-cyan); box-shadow: 0 0 20px rgba(0,240,255,0.4); margin-bottom: 8px;" onerror="this.style.display='none'; document.getElementById('home-qr-fallback').style.display='block';">
+        <div id="home-qr-fallback" style="display:none; font-size:12px; color:var(--neon-gold); padding:10px; background:rgba(255,176,32,0.1); border-radius:10px;">
+            ⚠️ 支付碼圖片 (123456_3.jpg) 載入中或未放至同資料夾
+        </div>
+        <div style="font-size: 11px; color: var(--neon-cyan); font-weight: 700; margin-top: 6px;">
+            ▲ 支援街口支付、台灣Pay、全支付、全盈+PAY、玉山 Wallet 等各大支付
+        </div>
+        <div style="font-size: 10.5px; color: var(--text-muted); margin-top: 4px; margin-bottom: 14px;">
+            💡 手機瀏覽可長按圖片儲存至相簿，或點擊下方按鈕直接下載使用
+        </div>
+        <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+            <a href="123456_3.jpg" download="閒人案內所_TWQR支付碼.jpg" class="tool-btn" style="margin-top:0; padding: 11px 18px; font-size: 12px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue)); color: #030205; font-weight: 900; width: auto; flex: 1; max-width: 200px;" onclick="triggerHaptic(15)">
+                📥 下載 QR Code 圖片
+            </a>
+            <button class="tool-btn" onclick="triggerHaptic(15); copyToClipboard(window.location.origin + '/123456_3.jpg')" style="margin-top:0; padding: 11px 18px; font-size: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #fff; width: auto; flex: 1; max-width: 180px;">
+                🔗 複製圖片網址
+            </button>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<!-- 模組 2：【出租人名單】 -->
+<div class="tab-panel" id="panel-partners">
+<div class="card-box">
+<div class="card-header">👥 出租人名單專區</div>
+<div class="featured-section">
+    <div class="featured-title">👑 全平台高分總排行 (TOP 3)</div>
+    <div class="featured-grid" id="featured-grid-container"></div>
+</div>
+<div class="search-box-wrapper">
+    <input type="text" id="filter-keyword" class="search-input" placeholder="🔍 自由關鍵字搜尋（例如：唱歌, 遊戲, 陪玩...）" oninput="applyFilters()">
+</div>
+<div class="tag-pill-container" id="tag-pills">
+    <div class="tag-pill active" onclick="triggerHaptic(10); selectPill('全部', this)">全部</div>
+    <div class="tag-pill" onclick="triggerHaptic(10); selectPill('⭐ 收藏', this)">⭐ 我的收藏</div>
+    <div class="tag-pill" onclick="triggerHaptic(10); selectPill('全台', this)">全台</div>
+    <div class="tag-pill" onclick="triggerHaptic(10); selectPill('台北', this)">台北</div>
+    <div class="tag-pill" onclick="triggerHaptic(10); selectPill('台中', this)">台中</div>
+    <div class="tag-pill" onclick="triggerHaptic(10); selectPill('高雄', this)">高雄</div>
+    <div class="tag-pill" onclick="triggerHaptic(10); selectPill('女', this)">女出租人</div>
+    <div class="tag-pill" onclick="triggerHaptic(10); selectPill('男', this)">男出租人</div>
+</div>
+<div class="filter-box">
+    <div class="filter-item">
+        <label>1. 性別</label>
+        <select id="filter-gender" onchange="onGenderChange()"><option value="">請選擇</option></select>
+    </div>
+    <div class="filter-item">
+        <label>2. 地區</label>
+        <select id="filter-region" onchange="onRegionChange()"><option value="">請選擇</option></select>
+    </div>
+    <div class="filter-item">
+        <label>3. 名稱</label>
+        <select id="filter-name" onchange="applyFilters()"><option value="">請選擇</option></select>
+    </div>
+    <div class="filter-item">
+        <label>4. 排序方式</label>
+        <select id="filter-sort" onchange="applyFilters()">
+            <option value="default">綜合推薦排序</option>
+            <option value="rating">⭐ 評分最高優先</option>
+            <option value="orders">🔥 累計單數最多</option>
+        </select>
+    </div>
+</div>
+<div class="partner-grid" id="partner-list-container">
+    <div style="text-align:center; color: var(--text-gray); font-size:13px; padding:20px;">載入中...</div>
+</div>
+</div>
+</div>
+
+<!-- 模組 2.2：【委託人專區】 -->
+<div class="tab-panel" id="panel-clients">
+<div class="card-box">
+    <div class="card-header" style="color: var(--neon-cyan);">👤 委託人專區 ｜ 信譽與評價榜</div>
+    <div class="featured-section">
+        <div class="featured-title">👑 委託人總排行 (TOP 3)</div>
+        <div class="featured-grid" id="client-featured-grid-container"></div>
+    </div>
+    <div class="search-box-wrapper">
+        <input type="text" id="client-filter-keyword" class="search-input" placeholder="🔍 搜尋委託需求（例如：展覽, 遊戲, 外拍...）" oninput="applyClientFilters()">
+    </div>
+    <div class="filter-box">
+        <div class="filter-item">
+            <label>1. 性別</label>
+            <select id="client-filter-gender" onchange="onClientGenderChange()"><option value="">請選擇</option></select>
+        </div>
+        <div class="filter-item">
+            <label>2. 地區</label>
+            <select id="client-filter-region" onchange="onClientRegionChange()"><option value="">請選擇</option></select>
+        </div>
+        <div class="filter-item">
+            <label>3. 名稱</label>
+            <select id="client-filter-name" onchange="applyClientFilters()"><option value="">請選擇</option></select>
+        </div>
+        <div class="filter-item">
+            <label>4. 排序方式</label>
+            <select id="client-filter-sort" onchange="applyClientFilters()">
+                <option value="default">綜合推薦排序</option>
+                <option value="rating">⭐ 評分最高優先</option>
+            </select>
+        </div>
+    </div>
+    <div style="font-size: 12.5px; color: var(--text-gray); margin-bottom: 16px;">點擊委託人卡片可查看詳細需求並給予真實信用評價：</div>
+    <div class="partner-grid" id="client-list-container"></div>
+</div>
+</div>
+
+<!-- 模組 2.3：【新手影音教學專區 (YT & TK)】 -->
+<div class="tab-panel" id="panel-tutorial">
+    <div class="card-box" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.08) 0%, rgba(179, 102, 255, 0.08) 100%); border-color: rgba(0, 240, 255, 0.4);">
+        <div class="card-header" style="color: var(--neon-cyan);">📺 官方新手影音教學專區</div>
+        <div style="font-size: 13px; color: var(--text-gray); margin-bottom: 18px; line-height: 1.7;">
+            歡迎來到閒人案內所新手影音教學中心！透過 YouTube 與 TikTok 短影音，快速掌握發單、預約、合規與安全守則：
+        </div>
+        <a class="link-card chat-card" href="https://youtube.com/@m2815?si=pTP9TOFlFqsz0q8-" target="_blank" onclick="triggerHaptic(15)" style="border-color: rgba(255, 0, 0, 0.5); background: linear-gradient(90deg, rgba(255, 0, 0, 0.12) 0%, rgba(16, 12, 30, 0.65) 100%); margin-bottom: 14px;">
+            <div class="link-icon">▶️</div>
+            <div class="link-content">
+                <div class="link-title" style="color: #ff6b6b;">YouTube 官方教學頻道</div>
+                <div class="link-desc">觀看詳細操作教學、平台規範與完整影音說明 ➔</div>
+            </div>
+        </a>
+        <a class="link-card chat-card" href="https://www.tiktok.com/@user7171201598526?_r=1&_t=ZS-99EaZIuGEx6" target="_blank" onclick="triggerHaptic(15)" style="border-color: rgba(0, 240, 255, 0.5); background: linear-gradient(90deg, rgba(0, 240, 255, 0.12) 0%, rgba(16, 12, 30, 0.65) 100%); margin-bottom: 0;">
+            <div class="link-icon">🎵</div>
+            <div class="link-content">
+                <div class="link-title" style="color: var(--neon-cyan);">TikTok (TK) 官方短影音</div>
+                <div class="link-desc">追蹤我們的 TikTok 帳號，獲取最新精華與短影音指南 ➔</div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- 模組 2.5：【個人足跡與收藏中心】 -->
+<div class="tab-panel" id="panel-history">
+<div class="card-box">
+    <div class="card-header" style="color: var(--neon-cyan);">📂 個人足跡與收藏中心</div>
+    <div style="font-size: 12.5px; color: var(--text-gray); margin-bottom: 16px;">系統自動為您記錄瀏覽過的對象與口袋收藏名單：</div>
+    <div style="font-size: 13.5px; font-weight: 800; color: var(--neon-gold); margin-bottom: 10px;">⭐ 我的收藏口袋清單</div>
+    <div id="history-favorites-container" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px;"></div>
+    <div style="font-size: 13.5px; font-weight: 800; color: var(--neon-cyan); margin-bottom: 10px;">👣 最近瀏覽足跡 (歷史紀錄)</div>
+    <div id="history-viewed-container" style="display: flex; flex-direction: column; gap: 8px;"></div>
+</div>
+</div>
+
+<!-- 模組 4：【VIP 招待所】 -->
+<div class="tab-panel" id="panel-rooms">
+<div class="card-box phone-box">
+<div class="card-header blue-header">📞 HOTLINE ｜ 即時語音諮詢</div>
+<a class="primary-card" href="https://line.me/ti/g2/7i-EpK7NYFvugpd3_rO9CPDdsIrOaplFHhxRBg?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" onclick="triggerHaptic(15)">
+<div class="primary-icon">📞</div>
+<div style="text-align: left;">
+<div style="font-size: 15.5px; font-weight: 800;">招待所 ➔ 電話專用頻道</div>
+<div style="font-size: 12.5px; color: #b2ced4;">點擊立刻進入語音聯絡，享受專人即時接待</div>
+</div>
+</a>
+</div>
+
+<!-- 🔮 靈性玄學會客室 -->
+<div class="card-box" style="border-color: rgba(179, 102, 255, 0.5); box-shadow: 0 0 35px rgba(179, 102, 255, 0.25), 0 20px 50px rgba(0, 0, 0, 0.65);">
+<div class="card-header" style="color: var(--neon-purple); text-shadow: 0 0 12px rgba(179, 102, 255, 0.5);">🔮 MYSTIC ｜ 靈性玄學會客室</div>
+<a class="primary-card" href="https://meet.google.com/pmj-kujt-kej" target="_blank" onclick="triggerHaptic(15)" style="background: linear-gradient(90deg, rgba(179, 102, 255, 0.25) 0%, rgba(255, 176, 32, 0.15) 100%) !important; border: 1.5px solid var(--neon-purple) !important; box-shadow: 0 0 25px rgba(179, 102, 255, 0.35) !important;">
+<div class="primary-icon" style="filter: drop-shadow(0 0 10px var(--neon-purple)) !important;">🔮</div>
+<div style="text-align: left;">
+<div style="font-size: 15.5px; font-weight: 800; color: #fff;">招待所 ➔ 命理玄學諮詢室</div>
+<div style="font-size: 12.5px; color: #edd6ff;">點擊進入 Google Meet 專屬視訊房 ｜ 塔羅・紫微・靈性交流</div>
+</div>
+</a>
+</div>
+
+<!-- ⚡ 101~110 房間網格 -->
+<div class="card-box">
+<div class="card-header">⚡ VIP Lounge ｜ 101 - 110（會員限定）</div>
+<div class="grid-rooms">
+<a class="room-item" data-room="101" href="https://line.me/ti/g2/_pozcfjocgAIcl5oXuMb0s1RJ0uKrlmKp8L84g" target="_blank" onclick="triggerHaptic(10)">101<span>ROOM</span></a>
+<a class="room-item" data-room="102" href="https://line.me/ti/g2/m4OF-0zcsdEALTD3QE4lpSkwfU8uZjZ3rsTqSQ" target="_blank" onclick="triggerHaptic(10)">102<span>ROOM</span></a>
+<a class="room-item" data-room="103" href="https://line.me/ti/g2/k2lIL7GMrhOquBmdFLw6r7Wpu-K0a_QM_p6MHA" target="_blank" onclick="triggerHaptic(10)">103<span>ROOM</span></a>
+<a class="room-item" data-room="104" href="https://line.me/ti/g2/hlx3ehotkyYz307eerHCDhezkqlkIo9XXyH9Dg" target="_blank" onclick="triggerHaptic(10)">104<span>ROOM</span></a>
+<a class="room-item" data-room="105" href="https://line.me/ti/g2/5HBoo3LVf3zmvU49X_1AmrnUAlO949XHltnrvA" target="_blank" onclick="triggerHaptic(10)">105<span>ROOM</span></a>
+<a class="room-item" data-room="106" href="https://line.me/ti/g2/TmjoaxprqX5LMZIOEhQ9Dmp5hlirHKwyDr3CnQ" target="_blank" onclick="triggerHaptic(106)">106<span>ROOM</span></a>
+<a class="room-item" data-room="107" href="https://line.me/ti/g2/jU7YjqDh3ndA94BMpP6QKwnPfEth0dxT5q3dkg" target="_blank" onclick="triggerHaptic(10)">107<span>ROOM</span></a>
+<a class="room-item" data-room="108" href="https://line.me/ti/g2/AwxKpQUhZf4HA2AS6HxMGG861ZnNxGDPVO8tTg" target="_blank" onclick="triggerHaptic(10)">108<span>ROOM</span></a>
+<a class="room-item" data-room="109" href="https://line.me/ti/g2/AYcDvBN5lkxjPEyGR4QStfEdduJAVKSir9n7JA" target="_blank" onclick="triggerHaptic(10)">109<span>ROOM</span></a>
+<a class="room-item" data-room="110" href="https://line.me/ti/g2/o_uIRGp-rTHkarNc0H9D5n5KMtUSl_FC9PlvvQ" target="_blank" onclick="triggerHaptic(10)">110<span>ROOM</span></a>
+</div>
+</div>
+
+<!-- ⚡ 201~210 房間網格 -->
+<div class="card-box">
+<div class="card-header">⚡ VIP Lounge ｜ 201 - 210（會員限定）</div>
+<div class="grid-rooms">
+<a class="room-item" data-room="201" href="https://line.me/ti/g2/-OR5NdJlXu9cA4TIVepqCtqVW1IIhdMTTRFfrA" target="_blank" onclick="triggerHaptic(10)">201<span>ROOM</span></a>
+<a class="room-item" data-room="202" href="https://line.me/ti/g2/G82ouWUBpRvx1TWV6WbHKdh4fp3rNLJx10cicw" target="_blank" onclick="triggerHaptic(10)">202<span>ROOM</span></a>
+<a class="room-item" data-room="203" href="https://line.me/ti/g2/yYxAF4LPd4n4gxZAGpmRUIyoHl06unOuOPsJGg" target="_blank" onclick="triggerHaptic(10)">203<span>ROOM</span></a>
+<a class="room-item" data-room="204" href="https://line.me/ti/g2/ZEvB1tJOkQRXysiLR15gIwtJb2IRNZI0ZTUyvA" target="_blank" onclick="triggerHaptic(10)">204<span>ROOM</span></a>
+<a class="room-item" data-room="205" href="https://line.me/ti/g2/-iIOpFDLnPY5PcRKJj0jYw2V0-pWYVRScHZE5w" target="_blank" onclick="triggerHaptic(10)">205<span>ROOM</span></a>
+<a class="room-item" data-room="206" href="https://line.me/ti/g2/a7wG0W_ZUg1Lu1ADbrTlA0p1BdsPJs4J5Q8BQg" target="_blank" onclick="triggerHaptic(10)">206<span>ROOM</span></a>
+<a class="room-item" data-room="207" href="https://line.me/ti/g2/JNCL2JNdFD8OHUqXNpYvybo25hwnAcugJkce6Q" target="_blank" onclick="triggerHaptic(10)">207<span>ROOM</span></a>
+<a class="room-item" data-room="208" href="https://line.me/ti/g2/GfUp7qx4DO6do_S8TZUgTwdpmwht0djXYIfbKg" target="_blank" onclick="triggerHaptic(10)">208<span>ROOM</span></a>
+<a class="room-item" data-room="209" href="https://line.me/ti/g2/m1uOuZNgJA07iCzdvy4POGc9ZZpgKjJ2i0zq8Q" target="_blank" onclick="triggerHaptic(10)">209<span>ROOM</span></a>
+<a class="room-item" data-room="210" href="https://line.me/ti/g2/3eeJF2Og-tHV1T6Zq6c0RaiEbnrJgkt_Ms48nA" target="_blank" onclick="triggerHaptic(10)">210<span>ROOM</span></a>
+</div>
+</div>
+
+<!-- ⚡ 301~310 房間網格 -->
+<div class="card-box">
+<div class="card-header">⚡ VIP Lounge ｜ 301 - 310（會員限定）</div>
+<div class="grid-rooms">
+<a class="room-item" data-room="301" href="https://line.me/ti/g2/cGyut3Z5-SSetio6B6Qef2XhLFze1kEAdhdK2g?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" onclick="triggerHaptic(10)">301<span>ROOM</span></a>
+<a class="room-item" data-room="302" href="https://line.me/ti/g2/pfd3x32SjVxwdSLXsah3Ry4__7GPSIomF4aH7A?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" onclick="triggerHaptic(10)">302<span>ROOM</span></a>
+<a class="room-item" data-room="303" href="https://line.me/ti/g2/dzJ0UTOcAQfeoTxqPajuF1p26xf0BGqYBQ-deg?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" onclick="triggerHaptic(10)">303<span>ROOM</span></a>
+<a class="room-item" data-room="304" href="https://line.me/ti/g2/vibFcJ_4WIMzYcc02GijQSLgdOXBUNn83GJ3gQ?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" onclick="triggerHaptic(10)">304<span>ROOM</span></a>
+<a class="room-item" data-room="305" href="https://line.me/ti/g2/wG0M4GuWDX2lRfql_DyijHMRRTbgCnXkGB7AyQ?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" onclick="triggerHaptic(10)">305<span>ROOM</span></a>
+<a class="room-item" data-room="306" href="https://line.me/ti/g2/Ed0yCPmF9EHstLwmjZSjTgJKHzvLUBHw2fbdKw?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" onclick="triggerHaptic(10)">306<span>ROOM</span></a>
+<a class="room-item" data-room="307" href="https://line.me/ti/g2/5_sLs6CDy-nMHHNNU7lx1Jsgr-c9fnE-DzN3jg?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" onclick="triggerHaptic(10)">307<span>ROOM</span></a>
+<a class="room-item" data-room="308" href="https://line.me/ti/g2/wyEcr34wyTIhsQ1Ka3oTx37tWim96dWM4i--ZQ?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" onclick="triggerHaptic(10)">308<span>ROOM</span></a>
+<a class="room-item" data-room="309" href="https://line.me/ti/g2/6eeXlWUia5-RFVeZ1LnLc6p30m7l8xVJK4bS3Q?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" onclick="triggerHaptic(10)">309<span>ROOM</span></a>
+<a class="room-item" data-room="310" href="https://line.me/ti/g2/fiFgZYLxvKFdpOemk6G_gLeRhXA0YORstLHt7A?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" onclick="triggerHaptic(10)">310<span>ROOM</span></a>
+</div>
+</div>
+</div>
+
+<!-- 模組 5：【營運公告】 -->
+<div class="tab-panel" id="panel-notice">
+
+<div style="background: linear-gradient(135deg, rgba(255, 176, 32, 0.16) 0%, rgba(18, 10, 32, 0.96) 100%); border: 2px solid var(--neon-gold); border-radius: 24px; padding: 22px; margin-bottom: 22px; text-align: left; box-shadow: 0 0 35px rgba(255,176,32,0.25);">
+    <div style="font-size: 15.5px; font-weight: 900; color: var(--neon-gold); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;">
+        <span>📌 【必讀特級備註】30% 定金結構與履約合意宣告</span>
+        <span class="badge-tag-gold">官方核心規範</span>
+    </div>
+    <div style="font-size: 13px; color: #fcefd6; line-height: 1.85;">
+        • <strong class="highlight-gold">20% 多維營運與宣傳成本</strong>：完整包含第三方金流手續費、網站全天候運營與系統維護、真人客服、各大社群宣傳推廣及未來 Podcast 合作拓展等全部必要經營支出。<br>
+        • <strong class="highlight-cyan">10% 任務完成委託費 ／ 突發風險補償費</strong>：本款項定義為「<strong class="highlight-cyan">唯有順利完成全趟委託方能獲派之實拿報酬</strong>」；若委託中途發生事故、違規中止或遭惡意放鳥，該 10% 則<strong class="danger-red">直接轉為發放予現場出租人之工時與車馬損失補償</strong>。<br>
+        • ⚠️ <strong class="danger-red">官方合意警示（嚴禁事後爭議）</strong>：匯款完成即代表委託單已正式成立，亦代表雙方已詳細閱讀、充分理解並完全同意以上內容及本網站所有公告與規範；若有任何異議，請務必於委託完成前提出。<strong class="danger-red">嚴禁在成功赴約或履約完成後，企圖脫離此規則無理爭執或抗辯</strong>，違者一律依規停權除名處分！
+    </div>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(255, 42, 109, 0.18) 0%, rgba(18, 10, 32, 0.95) 100%); border: 1.5px solid var(--neon-pink); border-radius: 24px; padding: 22px; margin-bottom: 22px; text-align: left; box-shadow: 0 0 30px rgba(255,42,109,0.2);">
+    <div style="font-size: 15px; font-weight: 900; color: #fff; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;">
+        <span>🚨 官方營運秩序與安全紅線總覽</span>
+        <span class="badge-tag-red">違規零容忍</span>
+    </div>
+    <div style="font-size: 13px; color: #fcebf2; line-height: 1.85;">
+        • 🚗 <strong>交通鐵律（重大違規）</strong>：行程移動期間，<strong class="danger-red">絕對嚴禁搭乘委託人之私人汽機車</strong>（即便坐後座亦同），一律各自搭乘大眾運輸、計程車/Uber 或步行。<br>
+        • 📍 <strong>空間與第三方報備</strong>：全程僅限公開明亮場所。若有第三方友人出席或場地包含包廂，<strong class="danger-red">必須提前告知並取得同意</strong>；若有隱瞞，出租人<strong class="danger-red">有權拒絕服務並安全撤離</strong>。<br>
+        • 💰 <strong>尾款 70% 本人給付</strong>：預約支付 30% 定金；剩餘 70% 尾款<strong class="danger-red">建議現金支付，見面後馬上結清，再開始行程</strong>，並於現場見面照面時一次結清。<br>
+        • 🛡️ <strong>10% 補償前提與退群處理</strong>：若中途中斷，或因委託人遭封鎖踢出/自行退群導致預約作廢，<strong class="danger-red">30% 定金全額沒收</strong>，平台並<strong class="danger-red">提撥 10% 作為出租人檔期損失與工時補償</strong>。<br>
+        • 🔨 <strong>違規累計封鎖門檻</strong>：線下行程違規滿 <strong class="danger-red">2 次</strong> ｜ 線上發單違規滿 <strong class="danger-red">3 次</strong> ➡️ <strong class="danger-red">永久封鎖並請離社群</strong>！
+    </div>
+</div>
+
+<div class="card-box" style="padding: 22px 18px; margin-bottom: 22px;">
+    <div class="card-header" style="margin-bottom: 14px;">📊 標準預約媒合作業與對帳 SOP</div>
+    <div class="workflow-steps">
+        <div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">挑選心儀對象</div><div class="step-desc">至「出租人」或「委託人」專區挑選合適對象，點擊預約按鈕。</div></div></div>
+        <div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">具體化發單與討論</div><div class="step-desc">嚴禁模稜兩可字眼。案件必須載明目的、地點、時間、項目與預算；單據下方討論串僅限討論該案細節。</div></div></div>
+        <div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">支付 30% 定金並留存明細</div><div class="step-desc">透過 TWQR / 街口支付轉帳 30% 定金（含 20% 營運宣傳與 10% 履約補償），雙方（特別是出租人）<strong class="danger-red">必須妥善保留轉帳截圖與明細</strong>備查。</div></div></div>
+        <div class="step-item"><div class="step-num">4</div><div class="step-content"><div class="step-title">見面照面即清結 70% 尾款</div><div class="step-desc">尾款<strong class="danger-red">建議現金支付，見面後馬上結清，再開始行程</strong>，且不得由他人代付。</div></div></div>
+        <div class="step-item"><div class="step-num">5</div><div class="step-content"><div class="step-title">24H 自動結案歸檔</div><div class="step-desc">服務完成後 24 小時無重大爭議回報，系統自動結案並開放雙向評分。</div></div></div>
+    </div>
+</div>
+
+<div class="sub-tab-navigation">
+<button class="sub-tab-btn active" onclick="triggerHaptic(10); switchSubTab('sub-terms');">📋 免責與安全</button>
+<button class="sub-tab-btn" onclick="triggerHaptic(10); switchSubTab('sub-client');">👤 委託人條款</button>
+<button class="sub-tab-btn" onclick="triggerHaptic(10); switchSubTab('sub-partner');">👥 出租四大禁令</button>
+<button class="sub-tab-btn" onclick="triggerHaptic(10); switchSubTab('sub-policy');">💳 退費與補償</button>
+</div>
+
+<div class="sub-tab-panel active" id="sub-panel-sub-terms">
+<div class="policy-list">
+    <div class="policy-item notice-cyan">
+        <div class="policy-item-title"><span>⚖️ 綠色陪伴平台定位與第三方免責</span><span class="badge-tag-gold">合規聲明</span></div>
+        <div class="policy-item-desc">本平台（閒人案內所）定位為健康、合法之<strong style="color: var(--neon-cyan);">「綠色陪伴平台」</strong>，僅提供純粹資訊媒合與交流服務。本平台非僱傭或履約合約當事人，用戶私下產生之承諾、行為或糾紛，<strong class="danger-red">本平台概不負任何連帶法律責任</strong>。</div>
+    </div>
+    <div class="policy-item notice-pink">
+        <div class="policy-item-title"><span>🚗 交通鐵律與場所嚴格限制</span><span class="badge-tag-red">重點紅線</span></div>
+        <div class="policy-item-desc">
+            • <strong>嚴禁搭乘私家車</strong>：行程移動期間，<strong class="danger-red">絕對嚴禁搭乘委託人之私人汽機車（即便坐後座亦同）</strong>，一律各自搭乘大眾運輸、計程車/Uber 或步行。<br>
+            • <strong>僅限公開場所</strong>：一律限於公開、明亮、合法之公共場所（咖啡廳, 商圈、展覽等），<strong class="danger-red">絕對嚴禁前往私人住宅、旅館或密閉包廂</strong>！
+        </div>
+    </div>
+    <div class="policy-item notice-blue">
+        <div class="policy-item-title"><span>🔞 18歲年齡審查與特許行業禁令</span><span class="badge-tag-gold">零容忍</span></div>
+        <div class="policy-item-desc">• <strong>年滿18歲限制</strong>：僅限完全行為能力之成年人使用，冒用者<strong class="danger-red">立即永久封鎖帳號</strong>。<br>• <strong>特許與違法禁止</strong>：<strong class="danger-red">嚴禁色情、猥褻、性暗示、違法特許行業</strong>及醫療診療、心理諮商等服務。</div>
+    </div>
+</div>
+</div>
+
+<div class="sub-tab-panel" id="sub-panel-sub-client">
+<div class="policy-list">
+    <div class="policy-item notice-gold">
+        <div class="policy-item-title"><span>📋 發單具體化與討論串專用規範</span><span class="badge-tag-gold">發案標準</span></div>
+        <div class="policy-item-desc">
+            • <strong>發單具體記載</strong>：委託發案<strong class="danger-red">嚴禁使用「你懂的」等模糊字眼</strong>。公開案件必須具體記載：<strong style="color: #fff;">(1)委託目的/行程 (2)地點 (3)時間 (4)項目 (5)預算報酬 (6)其他必要需求</strong>（敏感細節可開招待所房間討論）。<br>
+            • <strong>討論串專單專用</strong>：單據下方留言僅限討論該案具體細節，<strong class="danger-red">非相關人員嚴禁閒聊或插話</strong>，日常交流請移駕【閒人聊天室】。
+        </div>
+    </div>
+    <div class="policy-item notice-blue">
+        <div class="policy-item-title"><span>💳 30% 定金預付與 70% 現場本人給付結清</span><span class="badge-tag-gold">款項金流</span></div>
+        <div class="policy-item-desc">• 線上委託採全額預付（最長預付期嚴控以 <strong class="danger-red">2 個月（60天）</strong> 為限）。<br>• 線下委託預約成立支付 30% 定金，其餘 70% 尾款<strong class="danger-red">建議現金支付，見面後馬上結清，再開始行程</strong>，且不得由他人代付。</div>
+    </div>
+    <div class="policy-item notice-pink">
+        <div class="policy-item-title"><span>👥 第三方友人與包廂報備義務</span><span class="badge-tag-gold">安全條款</span></div>
+        <div class="policy-item-desc">行程若有第三方同行友人出席或涉及包廂等隱密空間，<strong class="danger-red">必須提前告知並取得同意</strong>。若隱瞞或突發帶人，出租人有權拒絕服務並撤離，<strong class="danger-red">30% 定金全數沒收</strong>，且提撥 10% 轉為補償出租人！</div>
+    </div>
+    <div class="policy-item notice-cyan">
+        <div class="policy-item-title"><span>🛑 委託人遇嚴重不符之申請中止與比例支付</span><span class="badge-tag-cyan" style="color:var(--neon-cyan); font-weight:800;">權益保障</span></div>
+        <div class="policy-item-desc">若委託人於赴約時發現現場出租人之實際狀況、言行或服務<strong class="danger-red">與事前約定完全嚴重不符合</strong>，委託人<strong class="highlight-cyan">有權向對方提出提前結束委託</strong>，並<strong class="highlight-gold">依出租人已出勤之出馬費/車馬工時合理比例結清費用</strong>。結束後請第一時間向平台回報事由，以便審查並對失職人員進行處分。</div>
+    </div>
+</div>
+</div>
+
+<div class="sub-tab-panel" id="sub-panel-sub-partner">
+<div class="policy-list">
+    <div class="policy-item notice-gold">
+        <div class="policy-item-title"><span>🛡️ 尾款 70% 實拿、不適單自我評估與回報機制</span><span class="badge-tag-gold">出租人防護</span></div>
+        <div class="policy-item-desc">
+            • <strong>事前自主風險評估</strong>：尾款 70% 建議現金支付，見面後馬上結清，再開始行程（完成全單後結算實拿 80%）。若事前接洽時已知該單可能存在潛在令人不舒服、氛圍不妥或安全疑慮之情況，<strong class="danger-red">出租人請自行審慎評估是否接單，切勿勉強赴約</strong>。<br>
+            • <strong>事中依比例收取與強制通報</strong>：若接單赴約後於現場發現該單情況嚴重不適、對方越線或與約定不符，出租人可<strong class="highlight-cyan">自行評估當下付出進度「依比例收取部分尾款」</strong>後立即中止委託並安全撤離，且<strong class="danger-red">事後必須主動向平台官方回報詳情</strong>！
+        </div>
+    </div>
+    <div class="policy-item notice-pink">
+        <div class="policy-item-title"><span>🚫 出租人四大禁令</span><span class="badge-tag-red">違者直接除名</span></div>
+        <div class="policy-item-desc">
+            1. <strong class="danger-red">不准「戀愛經營」</strong>：嚴禁曖昧話術、情感勒索或打著戀愛名義經營客人。<br>
+            2. <strong class="danger-red">不准「強迫下單」</strong>：嚴禁死纏爛打硬盧客人下單、加時或轉實體行程。<br>
+            3. <strong class="danger-red">不准「故意超時」</strong>：時間到即結案，嚴禁故意拖延對話並強制要求補單。<br>
+            4. <strong class="danger-red">不准「踩一捧一」</strong>：嚴禁惡意攻擊、貶低其他出租人來抬高自己。<br>
+            ⚠️ 委託人若遇違規行為，可透過【官方客服傳送門】進行全程匿名投訴！
+        </div>
+    </div>
+    <div class="policy-item notice-cyan">
+        <div class="policy-item-title"><span>📸 匯款截圖明細存查（對帳備查依據）</span><span class="badge-tag-gold">重要</span></div>
+        <div class="policy-item-desc">每筆預約定金轉帳完成後，出租人必須主動核對入帳金額，並<strong class="danger-red">妥善保留完整轉帳成功截圖與匯款明細</strong>。若發生帳務爭議，未提供明細者恕不受理補償。</div>
+    </div>
+    <div class="policy-item notice-blue">
+        <div class="policy-item-title"><span>📈 80% 報酬拆帳與個人稅務宣告</span><span class="badge-tag-gold">承攬合作</span></div>
+        <div class="policy-item-desc">• 平台僅收取 20% 多維維護費（涵蓋第三方金流、網站運營維護, 真人客服、社群宣傳及 Podcast 合作拓展），出租人實拿 <strong style="color: var(--neon-gold); font-weight:800;">80% 報酬</strong>（完成委託提撥 10% + 現場尾款 70%），次月 15 號統一撥款。<br>• 雙方為獨立承攬關係，個人所得須自行依法申報。</div>
+    </div>
+</div>
+</div>
+
+<div class="sub-tab-panel" id="sub-panel-sub-policy">
+<div class="policy-list">
+    <div class="policy-item notice-gold">
+        <div class="policy-item-title"><span>📌 30% 定金本質與履約不可抗辯規範</span><span class="badge-tag-gold">重要條款</span></div>
+        <div class="policy-item-desc">
+            30% 預約定金中：<strong class="highlight-gold">20% 包含第三方金流、網站運營維護、真人客服、各大社群宣傳推廣與未來 Podcast 合作拓展等全方位營運成本</strong>；<strong class="highlight-cyan">10% 為完成任務委託費或意外事故補償費</strong>。下單預約即視為雙方已完全合意本規則。<strong class="danger-red">嚴禁成功赴約後意圖規避結構無理爭執</strong>，違者直接終止會員資格！
+        </div>
+    </div>
+    <div class="policy-item notice-pink">
+        <div class="policy-item-title"><span>🔨 違規處罰與累計封鎖門檻</span><span class="badge-tag-red">處分標準</span></div>
+        <div class="policy-item-desc">
+            • 線下行程違規滿 <strong class="danger-red">2 次</strong> ➡️ <strong class="danger-red">永久封鎖並踢出社群！</strong><br>
+            • 線上發單違規滿 <strong class="danger-red">3 次</strong> ➡️ <strong class="danger-red">永久封鎖並踢出社群！</strong><br>
+            • 預約委託請一律依循官方平台標準流程成立，違者依規嚴格處分。
+        </div>
+    </div>
+    <div class="policy-item notice-cyan">
+        <div class="policy-item-title"><span>💳 退費、放鳥違約金與 10% 補償規範</span><span class="badge-tag-gold">保障條款</span></div>
+        <div class="policy-item-desc">
+            • <strong>7天前取消</strong>：全額退還已付定金（扣除跨行手續費）。<br>
+            • <strong>7天內臨退/放鳥</strong>：扣除總金額 <strong class="danger-red">30% 作為違約金</strong>（20% 平台行政費 + 10% 時間補償予出租人）。<br>
+            • <strong>10% 補償前提、中斷與退群規範</strong>：<br>
+              1. 10% 費用之提撥以「完成委託」為常態前提。<br>
+              2. 若行程中途因委託人突發帶人、隱瞞密閉空間等事件導致提前中斷委託，30% 定金全額沒收不退，並直接將 <strong class="danger-red">10% 轉為現場出租人之工時、車馬費與精神損失補償</strong>！<br>
+              3. 若預約成立後，<strong class="danger-red">因委託人遭封鎖踢出社群或自行退出社群，其名下後續所有已預約行程強制終止作廢，30% 定金沒收不退，出租人一樣可獲派該筆訂單 10% 之檔期損失補償</strong>！
+        </div>
+    </div>
+    <div class="policy-item notice-blue">
+        <div class="policy-item-title"><span>🔐 個資保護、言論規範與管轄法院</span><span class="badge-tag-gold">法律保障</span></div>
+        <div class="policy-item-desc">依《個人資料保護法》妥善保護隱私數據。評價須客觀真實，嚴禁公然侮辱或肉搜。若衍生法律訴訟，<strong class="danger-red">雙方合意以台灣地方法院為第一審管轄法院</strong>。</div>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="footer">© 2026 閒人案內所 ｜ 頂級生活陪伴體驗</div>
+</div>
+
+<!-- 新手教學與成員引導彈窗 -->
+<div id="onboarding-modal">
+    <div class="onboarding-content" id="onboard-step-box"></div>
+</div>
+
+<!-- 📋 發單前同意書確認彈窗 -->
+<div id="copy-agreement-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 3, 8, 0.92); backdrop-filter: blur(18px); z-index: 10007; display: none; align-items: center; justify-content: center; padding: 18px;">
+    <div class="modal-content" style="border-color: var(--neon-gold); box-shadow: 0 0 50px rgba(255,176,32,0.35); text-align: left;">
+        <div class="modal-title" style="color: var(--neon-gold); margin-bottom: 12px;">
+            <span>📋 發單與尾款合意同意書</span>
+            <button class="modal-close" onclick="closeAgreementModal()">✕</button>
+        </div>
+        <div style="font-size: 12.5px; color: #f4effc; line-height: 1.8; margin-bottom: 16px; background: rgba(255,176,32,0.06); padding: 14px; border-radius: 16px; border: 1px solid rgba(255,176,32,0.3);">
+            • <strong>30% 預約定金結構</strong>：包含 20% 多維營運宣傳與 10% 履約/補償金。<br>
+            • <strong>預約成立與定金提醒</strong>：預約須完成定金支付才算正式成立。若定金未付，此預約單視同未成立，出租人保有優先安排檔期及不另行保留時間之權利。<br>
+            • <strong>尾款給付規定</strong>：剩餘 70% 尾款建議現金支付，<strong>見面後馬上結清，再開始行程</strong>。<br>
+            • <strong>交通與安全鐵律</strong>：嚴禁搭乘私家車，一律公開場所綠色陪伴。
+        </div>
+        <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #fff; font-weight: 700; cursor: pointer; margin-bottom: 20px;">
+            <input type="checkbox" id="agreement-checkbox" style="width: 18px; height: 18px; accent-color: var(--neon-gold); cursor: pointer;">
+            <span>我已詳細閱讀並完全同意以上規定，確認尾款見面當下付清且建議現金支付。</span>
+        </label>
+        <button class="tool-btn" onclick="confirmAndSendDraft()" style="background: linear-gradient(135deg, var(--neon-gold), var(--neon-orange)); color: #030205; font-weight: 900; margin-top: 0;">✅ 同意並複製發送草稿</button>
+    </div>
+</div>
+
+<!-- 結構化異常/不適單回報彈窗 -->
+<div id="incident-modal">
+    <div class="modal-content">
+        <div class="modal-title">
+            <span>⚠️ 異常行程 / 不適單通報</span>
+            <button class="modal-close" onclick="closeIncidentModal();">✕</button>
+        </div>
+        <div style="font-size: 12px; color: var(--text-gray); margin-bottom: 12px; line-height: 1.6;">
+            若現場遇到與約定完全不符、未報備同行人/密閉空間或嚴重不適，請依規回報存證：
+        </div>
+        
+        <label style="font-size: 12px; font-weight:800; color:var(--neon-gold); display:block; margin-bottom:4px;">1. 通報人身分</label>
+        <select id="inc-role" class="tool-input" style="padding:10px; margin-bottom:10px;">
+            <option value="出租人">我是出租人（依比例收費/中止撤離）</option>
+            <option value="委託人">我是委託人（嚴重不符/申請中止付車馬費）</option>
+        </select>
+
+        <label style="font-size: 12px; font-weight:800; color:var(--neon-gold); display:block; margin-bottom:4px;">2. 對象姓名 / 委託總金額</label>
+        <div style="display:flex; gap:8px; margin-bottom:10px;">
+            <input type="text" id="inc-target" class="tool-input" placeholder="對象姓名" style="flex:1; margin-bottom:0;">
+            <input type="number" id="inc-amount" class="tool-input" placeholder="總金額" style="flex:1; margin-bottom:0;">
+        </div>
+
+        <label style="font-size: 12px; font-weight:800; color:var(--neon-gold); display:block; margin-bottom:4px;">3. 異常原因</label>
+        <select id="inc-reason" class="tool-input" style="padding:10px; margin-bottom:10px;">
+            <option value="未提前報備第三方同行友人">未提前報備第三方同行友人</option>
+            <option value="隱瞞包廂或私人密閉空間">隱瞞包廂或私人密閉空間</option>
+            <option value="現場言行/外貌與事前約定完全不符">現場言行/外貌與事前約定完全不符</option>
+            <option value="越線言語騷擾或不適行為">越線言語騷擾或不適行為</option>
+            <option value="嚴重遲到或無故放鳥">嚴重遲到或無故放鳥</option>
+            <option value="其他突發狀況">其他突發狀況</option>
+        </select>
+
+        <label style="font-size: 12px; font-weight:800; color:var(--neon-gold); display:block; margin-bottom:4px;">4. 實際現場處理與比例金額說明</label>
+        <textarea id="inc-details" class="tool-input" placeholder="請填寫現場已執行時長、實收/實付之比例金額與具體事證..." style="height:60px; font-size:12px; resize:none; margin-bottom:12px;"></textarea>
+
+        <button class="tool-btn" onclick="submitIncidentReport()" style="background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple)); color:#fff; font-weight:900;">🚨 複製格式並開啟 LINE 通報管管</button>
+    </div>
+</div>
+
+<!-- 互動彈跳視窗 -->
+<div id="booking-modal">
+    <div class="modal-content">
+        <div class="modal-title">
+            <span id="modal-partner-title">📋 快速預約表單</span>
+            <button class="modal-close" onclick="triggerHaptic(10); closeBookingModal();">✕</button>
+        </div>
+        <div style="font-size: 12.5px; color: var(--text-gray); margin-bottom: 12px;">填寫預約細節，系統自動生成專屬預約格式與行事曆：</div>
+        
+        <div style="background: rgba(0,242,254,0.08); border: 1px solid rgba(0,242,254,0.4); padding: 14px; border-radius: 16px; margin-bottom: 14px; text-align: center;">
+            <div style="font-size: 12px; color: var(--neon-cyan); font-weight: 800; margin-bottom: 8px; text-align: left;">
+                💳 <b>閒人出租 TWQR 30% 定金支付：</b><br>包含 20% 金流與多維營運宣傳 + 10% 履約/補償金。<br>
+                <span style="color:var(--neon-gold);">⚠️ 須完成定金支付預約方才正式成立。</span>
+            </div>
+            <img src="123456_3.jpg" alt="TWQR 支付碼" style="width: 130px; height: auto; border-radius: 12px; border: 2px solid var(--neon-cyan); box-shadow: 0 0 15px rgba(0,240,255,0.3); margin: 6px 0;" onerror="this.onerror=null; this.style.display='none'; document.getElementById('qr-fallback-msg').style.display='block';">
+            <div id="qr-fallback-msg" style="display:none; font-size:11px; color:var(--neon-gold); padding:8px; background:rgba(255,176,32,0.1); border-radius:8px; margin-top:6px;">
+                ⚠️ 支付 QR Code 圖片載入中或未放至同資料夾 (123456_3.jpg)，請聯繫客服索取匯款帳號！
+            </div>
+            <div style="font-size: 10px; color: var(--text-muted); margin-top: 4px;">
+                💡 手機瀏覽可長按圖片儲存，再至支付App點選「相簿」掃描
+            </div>
+        </div>
+
+        <label style="font-size: 12px; font-weight:800; color:var(--neon-gold); display:block; margin-bottom:4px;">預約日期</label>
+        <input type="date" id="modal-date" class="tool-input">
+        <label style="font-size: 12px; font-weight:800; color:var(--neon-gold); display:block; margin-bottom:4px;">預約時間</label>
+        <input type="text" id="modal-time" class="tool-input" placeholder="預約時間（例如：18:00-21:00）">
+        <label style="font-size: 12px; font-weight:800; color:var(--neon-gold); display:block; margin-bottom:4px;">委託總金額</label>
+        <input type="text" id="modal-amount" class="tool-input" placeholder="委託總金額（例如：1000）">
+        <div style="display:flex; gap:8px;">
+            <button class="tool-btn" onclick="triggerHaptic(20); submitBookingModal();" style="flex:1;">🚀 複製並傳送 LINE</button>
+            <button class="tool-btn" onclick="triggerHaptic(20); addToGoogleCalendar();" style="flex:1; background:rgba(76,201,240,0.2); border:1px solid var(--neon-cyan);">📅 加到行事曆</button>
+        </div>
+    </div>
+</div>
+
+<div id="partner-detail-modal" onclick="closePartnerDetail()">
+    <div class="partner-sheet" onclick="event.stopPropagation()">
+        <div class="modal-title">
+            <span id="sheet-name" style="color:var(--neon-gold)">👤 對象詳情</span>
+            <button class="modal-close" onclick="triggerHaptic(10); closePartnerDetail();">✕</button>
+        </div>
+        <div id="sheet-tags" style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;"></div>
+        <div id="sheet-rating" style="margin-bottom:12px; font-size:12.5px; color:var(--neon-gold); font-weight:700;"></div>
+        <div style="margin-bottom: 12px; background: rgba(255,255,255,0.025); padding: 10px 12px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.07); text-align: left;">
+            <div style="font-size: 11.5px; color: var(--neon-gold); font-weight: 800; margin-bottom: 4px;">🏆 成就徽章解鎖牆：</div>
+            <div id="sheet-badges-container" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
+        </div>
+        <div style="margin-bottom: 14px; background: rgba(255,255,255,0.03); padding: 12px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); text-align: left;">
+            <div style="font-size: 12px; color: var(--neon-cyan); font-weight: 800; margin-bottom: 6px;" id="rating-section-title">⭐ 給予評價與留言：</div>
+            <div id="rating-action-area" style="display: flex; gap: 6px; margin-bottom: 8px;"></div>
+            <textarea id="rating-comment-input" class="tool-input" placeholder="寫下您的互動心得或留言（選填）..." style="margin-top:0; margin-bottom:8px; height:54px; font-size:12px; resize:none;"></textarea>
+            <button class="tool-btn" id="submit-review-btn" style="margin-top:0; background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue)); color: #030205; font-weight: 900; font-size: 12.5px;" onclick="submitRatingWithComment()">💌 送出評分與留言</button>
+        </div>
+        <div style="margin-bottom: 14px; text-align: left;">
+            <div style="font-size: 11.5px; color: var(--text-gray); font-weight: 800; margin-bottom: 4px;" id="comments-list-title">💬 真實評價留言紀錄：</div>
+            <div id="sheet-comments-list" style="display: flex; flex-direction: column; gap: 6px; max-height: 90px; overflow-y: auto;"></div>
+        </div>
+        <div style="font-size:12px; color:var(--text-gray); margin-bottom:4px; font-weight:700;">完整介紹：</div>
+        <div id="sheet-intro" style="font-size:13px; color:#f4effc; line-height:1.75; background:rgba(0,0,0,0.5); padding:14px; border-radius:14px; margin-bottom:18px; max-height:95px; overflow-y:auto; border:1px solid rgba(255,255,255,0.06);"></div>
+        <div style="display:flex; gap:10px;" id="sheet-action-btns">
+            <button class="tool-btn" id="sheet-fav-btn" style="flex:1; background:rgba(255,42,109,0.25); border:1px solid var(--neon-pink); margin-top:0;" onclick="triggerHaptic(15)">❤️ 收藏</button>
+            <button class="tool-btn" id="sheet-book-btn" style="flex:2; margin-top:0;" onclick="triggerHaptic(15)">📋 聯繫 / 預約</button>
+        </div>
+    </div>
+</div>
+
+<div id="rating-popup-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 3, 8, 0.9); backdrop-filter: blur(16px); z-index: 10003; display: none; align-items: center; justify-content: center; padding: 18px;">
+    <div class="modal-content" style="text-align: center; border-color: var(--neon-gold); box-shadow: 0 0 45px rgba(255,176,32,0.35);">
+        <div style="font-size: 32px; margin-bottom: 8px;">✨</div>
+        <div class="modal-title" style="justify-content: center; color: var(--neon-gold); margin-bottom: 10px; font-size: 15.5px;">評分狀態通知</div>
+        <div id="rating-popup-desc" style="font-size: 13px; color: var(--text-gray); line-height: 1.8; margin-bottom: 18px; white-space: pre-wrap;">感謝您的真實回饋！為維護信譽，短期內無法重複給予評分。</div>
+        <button class="tool-btn" onclick="closeRatingPopup()" style="background: linear-gradient(135deg, var(--neon-gold), var(--neon-orange)); color: #030205; font-weight: 900; margin-top:0;">我知道了 👍</button>
+    </div>
+</div>
+
+<div id="toast-notification">✨ 動作已完成</div>
+<button id="back-to-top-btn" onclick="scrollToTop()" title="回到頂部">↑</button>
+
+<div id="ai-float-btn" onclick="triggerHaptic(15); toggleAIChat();">👻</div>
+<div id="ai-chat-box">
+    <div class="ai-chat-header">
+        <span>🤖 閒人案內所 ｜ 智能風控總監</span>
+        <div class="header-actions">
+            <button class="ai-action-btn" onclick="clearChatHistory()" title="清空對話">🧹</button>
+            <button class="ai-action-btn" id="ai-close-btn" title="關閉" onclick="toggleAIChat()">✕</button>
+        </div>
+    </div>
+    <div class="ai-chat-messages" id="ai-messages">
+        <div class="ai-msg bot">您好呀！我是閒人案內所的首席智慧風控官兼萌系客服總監～✨ 有任何定金結構（20%金流營運宣傳+10%履約補償）、預約須付定金方才成立、尾款建議現金支付見面即結清或委託規範，隨時問我喔！👻💖</div>
+    </div>
+    <div class="ai-quick-chips">
+        <button onclick="sendQuickQuestion('請問預約定金沒付會有什麼影響？')">📌 定金未付規定</button>
+        <button onclick="sendQuickQuestion('請問30%定金的詳細構成與意義？')">📌 30%定金本質</button>
+        <button onclick="sendQuickQuestion('接單遇到不舒服或完全不符如何處理？')">🛡️ 不適單與比例收取</button>
+        <button onclick="sendQuickQuestion('尾款給付規定是多少？')">💳 尾款見面現金結清</button>
+        <button onclick="sendQuickQuestion('交通安全鐵律是什麼？')">🚗 嚴禁私家車</button>
+    </div>
+    <div class="ai-chat-input-area">
+        <input id="ai-user-input" placeholder="輸入你想詢問的問題..." type="text"/>
+        <button id="ai-send-btn" onclick="sendAIMessage()">發送</button>
+    </div>
+</div>
+
+<style>
+    /* 質感時間選擇器專屬樣式 */
+    .time-picker-card {
+        background: rgba(16, 12, 30, 0.95);
+        border: 1px solid rgba(255, 176, 32, 0.4);
+        border-radius: 16px;
+        padding: 14px 16px;
+        box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);
+    }
+    .time-picker-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    .time-icon {
+        font-size: 20px;
+        filter: drop-shadow(0 0 8px var(--neon-gold));
+    }
+    .time-input-group {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+    .time-input-group label {
+        font-size: 10.5px;
+        color: var(--text-muted);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .styled-time-input {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 176, 32, 0.3);
+        border-radius: 12px;
+        color: #fff;
+        padding: 9px 12px;
+        font-size: 14px;
+        font-weight: 800;
+        outline: none;
+        text-align: center;
+        transition: var(--transition-smooth);
+        color-scheme: dark;
+    }
+    .styled-time-input:focus {
+        border-color: var(--neon-gold);
+        box-shadow: 0 0 14px rgba(255, 176, 32, 0.35);
+        background: rgba(255, 176, 32, 0.08);
+    }
+    .time-divider {
+        color: var(--neon-gold);
+        font-weight: 900;
+        font-size: 16px;
+        margin-top: 15px;
+    }
+    .time-quick-actions {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        padding-top: 10px;
+    }
+    .time-chip-btn {
+        background: rgba(255, 176, 32, 0.12);
+        border: 1px solid rgba(255, 176, 32, 0.35);
+        color: var(--neon-gold);
+        font-size: 11px;
+        font-weight: 700;
+        padding: 5px 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: var(--transition-smooth);
+    }
+    .time-chip-btn:hover {
+        background: var(--neon-gold);
+        color: #030205;
+        box-shadow: 0 0 12px var(--neon-gold);
+    }
+    .time-chip-btn.reset {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: var(--text-gray);
+        margin-left: auto;
+    }
+    .time-chip-btn.reset:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        box-shadow: none;
+    }
+</style>
+
+<script>
+    const OFFICIAL_WEBSITE_URL = 'https://103class9-cyber.github.io/loung/';
+
+    let selectedPill = '全部';
+    let currentBookingPartner = '';
+    let currentBookingRegion = '';
+    let currentSelectedScore = 0;
+    let currentActiveTargetName = '';
+    let currentTargetType = 'partner';
+    let favorites = JSON.parse(localStorage.getItem('renjian_favorites') || '[]');
+    let clientFavorites = JSON.parse(localStorage.getItem('renjian_client_favorites') || '[]');
+    let userRatings = {}; 
+    let clientRatings = {}; 
+
+    let allClientsData = [
+        ["小雅", "女", "台北", "尋找週末一起去看展覽與喝咖啡的溫柔飯友～"],
+        ["阿傑", "男", "台中", "想找遊戲神隊友一起打傳說對決，長期配合！"],
+        ["Mina", "女", "高雄", "徵求拍照技術好的朋朋陪去駁二外拍～"],
+        ["凱文", "男", "雙北", "尋找平日下班一起慢跑與吃宵夜的夥伴。"]
+    ];
+
+    let allPartnersData = [
+        ["Chiu", "女", "全台", "個性隨和、健談且富有同理心，想要認真傾聽都可以找我", "", ["遊戲陪玩", "聊天解悶"]],
+        ["R融", "男", "全台", "出租長", "", ["活動陪伴", "諮詢交流"]],
+        ["塔塔", "女", "高雄", "穿搭小幫手 想要改頭換面可以找我～", "", ["逛街購物", "穿搭改造"]],
+        ["卡洛琳", "女", "台中", "線上陪伴, 陪玩遊戲, 聊天", "", ["線上陪玩", "語音聊天"]],
+        ["謝小念", "女", "高雄", "喝酒後，小女子開心會唱歌唷～", "", ["聚餐陪伴", "唱歌炒氣氛"]],
+        ["大嬸是素顏吃貨", "女", "雙北", "愛吃好吃 看大嬸吃飯你會覺得特別好吃～", "", ["探店飯友", "美食品嚐"]],
+        ["翹臀是隻貓", "女", "桃園", "無時無刻都可以犯睏 想要找人聊天陪伴～", "", ["深夜聊天", "掛睡陪伴"]],
+        ["雪", "女", "台北", "語音陪伴、打字聊天、遊戲陪伴", "", ["遊戲陪玩", "文字聊天"]],
+        ["昊昊", "女", "台中", "一個吃貨，陪逛陪玩的開心果！", "", ["陪逛街", "景點走走"]],
+        ["Dora", "女", "南桃園", "寵物保姆、語音聊天 / 陪伴", "", ["寵物照顧", "語音陪伴"]],
+        ["Arlene", "女", "台南", "個性活潑、外向有活力，喜歡互相交流, 陪伴，認識新朋友們", "", ["戶外活動", "交友交流"]],
+        ["芳婉", "女", "台中", "很會聊天、不怕生、擅長聽你傾訴", "", ["心事傾聽", "聊天解悶"]],
+        ["幽文bella", "女", "台中", "想出租我的時間來認識新朋友！", "", ["咖啡廳聊天", "認識新朋友"]],
+        ["Aoi", "女", "雙北", "會唱、會嘔、會扭來扭去～", "", ["歡樂炒場", "趣味陪伴"]]
+    ];
+
+    const googleSheetApiUrl = 'https://script.google.com/macros/s/AKfycbwq8k7IsDwA5vAKEJkIWwYyhFUFGWAEIHqaidJgPh88wdri8wyTLDyDiQ1VNhH-RTuKSQ/exec';
+
+    function generateAiHumanTags(intro) {
+        let tags = [];
+        if (!intro) return ['✨ 隨性交流'];
+        if (intro.includes('唱歌') || intro.includes('喝酒') || intro.includes('開心')) tags.push('🎤 微醺開唱', '✨ 氣氛擔當');
+        if (intro.includes('吃') || intro.includes('飯') || intro.includes('美食') || intro.includes('吃貨')) tags.push('🍲 療癒飯友', '🔍 美食探險');
+        if (intro.includes('遊戲') || intro.includes('陪玩') || intro.includes('打字')) tags.push('🎮 遊戲神隊友', '🎧 語音暢聊');
+        if (intro.includes('聊天') || intro.includes('傾聽') || intro.includes('同理心')) tags.push('💬 溫柔傾聽', '🌙 深夜談心');
+        if (intro.includes('逛街') || intro.includes('穿搭') || intro.includes('改頭換面')) tags.push('🛍️ 逛街神隊友', '👗 品味穿搭');
+        if (intro.includes('寵物') || intro.includes('保姆')) tags.push('🐾 寵物好夥伴');
+        if (intro.includes('戶外') || intro.includes('走走') || intro.includes('景點') || intro.includes('外向')) tags.push('🌿 戶外踏青', '☀️ 陽光活力');
+        if (tags.length === 0) tags = ['✨ 隨性交流', '🤝 真誠陪伴'];
+        return [...new Set(tags)].slice(0, 3);
+    }
+
+    function triggerHaptic(duration = 15) {
+        if (navigator.vibrate) navigator.vibrate(duration);
+    }
+
+    window.addEventListener('scroll', () => {
+        const backBtn = document.getElementById('back-to-top-btn');
+        if (backBtn) {
+            if (window.scrollY > 300) backBtn.classList.add('show');
+            else backBtn.classList.remove('show');
+        }
+    });
+
+    function scrollToTop() {
+        triggerHaptic(20);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function initPWA() {
+        try {
+            const manifestData = {
+                "name": "閒人案內所",
+                "short_name": "閒人案內所",
+                "start_url": "./",
+                "display": "standalone",
+                "background_color": "#030205",
+                "theme_color": "#030205",
+                "icons": [{"src": "https://img.icons8.com/fluency/96/ghost.png", "sizes": "96x96", "type": "image/png"}]
+            };
+            const blob = new Blob([JSON.stringify(manifestData)], {type: 'application/json'});
+            const manifestTag = document.createElement('link');
+            manifestTag.rel = 'manifest';
+            manifestTag.href = URL.createObjectURL(blob);
+            document.head.appendChild(manifestTag);
+
+            if ('serviceWorker' in navigator) {
+                const swCode = `
+                    self.addEventListener('install', (e) => { self.skipWaiting(); });
+                    self.addEventListener('activate', (e) => { e.waitUntil(clients.claim()); });
+                    self.addEventListener('fetch', (e) => { e.respondWith(fetch(e.request).catch(() => caches.match(e.request))); });
+                `;
+                const swBlob = new Blob([swCode], {type: 'application/javascript'});
+                navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(()=>{});
+            }
+        } catch (e) {}
+    }
+
+    function showToast(message) {
+        const toast = document.getElementById('toast-notification');
+        if (!toast) return;
+        toast.innerText = message;
+        toast.classList.add('show');
+        setTimeout(() => { toast.classList.remove('show'); }, 2500);
+    }
+
+    function showRatingPopup(descText) {
+        document.getElementById('rating-popup-desc').innerText = descText;
+        document.getElementById('rating-popup-modal').style.display = 'flex';
+    }
+
+    function closeRatingPopup() {
+        triggerHaptic(10);
+        document.getElementById('rating-popup-modal').style.display = 'none';
+    }
+
+    function copyToClipboard(text) {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast("📋 已複製到剪貼簿！");
+            }).catch(() => {
+                showToast("⚠️ 複製失敗，請手動複製");
+            });
+        }
+    }
+
+    function addToGoogleCalendar() {
+        const date = document.getElementById('modal-date').value;
+        const time = document.getElementById('modal-time').value || '18:00-21:00';
+        const amount = document.getElementById('modal-amount').value || '1000';
+        
+        if (!date) {
+            showToast("❌ 請先選擇預約日期！");
+            return;
+        }
+
+        const title = encodeURIComponent(`閒人案內所 ｜ ${currentBookingPartner} 預約委託行程`);
+        const details = encodeURIComponent(`預約對象：${currentBookingPartner}\n活動地區：${currentBookingRegion}\n委託總金額：$${amount}\n\n提醒：\n1. 預約須完成定金支付方才正式成立！\n2. 移動嚴禁搭乘私家車！\n3. 尾款 70% 建議現金支付，見面後馬上結清，再開始行程。`);
+        const location = encodeURIComponent(currentBookingRegion);
+        
+        const cleanDate = date.replace(/-/g, '');
+        const gCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&dates=${cleanDate}T060000Z/${cleanDate}T080000Z`;
+        
+        window.open(gCalUrl, '_blank');
+    }
+
+    function initTimeSelects() {
+        const today = new Date().toISOString().split('T')[0];
+        if (document.getElementById('calc-date')) document.getElementById('calc-date').value = today;
+        if (document.getElementById('req-date')) document.getElementById('req-date').value = today;
+        if (document.getElementById('calc-orig-date')) document.getElementById('calc-orig-date').value = today;
+        if (document.getElementById('calc-new-date')) document.getElementById('calc-new-date').value = today;
+        updateCalcAndTemplate();
+    }
+
+    function timeToMinutes(timeStr) {
+        if (!timeStr || !timeStr.includes(':')) return 0;
+        const [h, m] = timeStr.split(':').map(Number);
+        return h * 60 + (m || 0);
+    }
+
+    function adjustTimeDuration(hoursToAdd) {
+        triggerHaptic(10);
+        const startInput = document.getElementById('calc-time-start');
+        const endInput = document.getElementById('calc-time-end');
+        if (!startInput || !endInput) return;
+
+        let sMin = timeToMinutes(startInput.value || '18:00');
+        let newEMin = sMin + (hoursToAdd * 60);
+        if (newEMin >= 1440) newEMin = 1439;
+
+        let eh = Math.floor(newEMin / 60);
+        let em = newEMin % 60;
+        endInput.value = `${String(eh).padStart(2,'0')}:${String(em).padStart(2,'0')}`;
+        updateCalcAndTemplate();
+    }
+
+    function resetTimeToDefault() {
+        triggerHaptic(10);
+        const startInput = document.getElementById('calc-time-start');
+        const endInput = document.getElementById('calc-time-end');
+        if (startInput) startInput.value = '18:00';
+        if (endInput) endInput.value = '21:00';
+        updateCalcAndTemplate();
+    }
+
+    function toggleUnitFields() {
+        const unit = document.getElementById('calc-unit').value;
+        const amountLabel = document.getElementById('calc-amount-label');
+
+        if (unit === '時薪') {
+            if (amountLabel) amountLabel.innerText = '5. 時薪數值 (NT$ / 小時)';
+        } else {
+            if (amountLabel) amountLabel.innerText = '5. 計次總金額 (NT$ / 次)';
+        }
+        updateCalcAndTemplate();
+    }
+
+    function toggleReqUnitFields() {
+        const unit = document.getElementById('req-unit').value;
+        const budgetLabel = document.getElementById('req-budget-label');
+
+        if (unit === '時薪') {
+            if (budgetLabel) budgetLabel.innerText = '預算報酬 (時薪 NT$)';
+        } else {
+            if (budgetLabel) budgetLabel.innerText = '預算報酬 (計次總額 NT$)';
+        }
+        updateCalcAndTemplate();
+    }
+
+    function toggleCalcModeFields() {
+        const mode = document.getElementById('calc-mode').value;
+        const normalFields = document.getElementById('calc-normal-fields');
+        const postponeFields = document.getElementById('calc-postpone-fields');
+        const clientReqFields = document.getElementById('calc-client-request-fields');
+        const breakdownPanel = document.getElementById('calc-breakdown-panel');
+        const lenderWrapper = document.getElementById('calc-lender-wrapper');
+
+        if (normalFields) normalFields.style.display = 'none';
+        if (postponeFields) postponeFields.style.display = 'none';
+        if (clientReqFields) clientReqFields.style.display = 'none';
+        if (breakdownPanel) breakdownPanel.style.display = 'none';
+        if (lenderWrapper) lenderWrapper.style.display = 'block';
+
+        if (mode === 'offline' || mode === 'online') {
+            if (normalFields) normalFields.style.display = 'grid';
+            if (breakdownPanel) breakdownPanel.style.display = 'block';
+        } else if (mode === 'postpone') {
+            if (postponeFields) postponeFields.style.display = 'grid';
+            if (breakdownPanel) breakdownPanel.style.display = 'block';
+        } else if (mode === 'client_request') {
+            if (clientReqFields) clientReqFields.style.display = 'grid';
+            if (lenderWrapper) lenderWrapper.style.display = 'none';
+        }
+
+        updateCalcAndTemplate();
+    }
+
+    function updateCalcAndTemplate() {
+        const mode = document.getElementById('calc-mode').value;
+        const client = document.getElementById('calc-client').value.trim() || 'R融';
+        let lender = 'Chiu';
+        const lenderInput = document.getElementById('calc-lender');
+        if (lenderInput) {
+            lender = lenderInput.value.trim() || 'Chiu';
+        }
+
+        const breakdownOut = document.getElementById('calc-breakdown-output');
+        const templateOut = document.getElementById('calc-template-output');
+        if (!breakdownOut || !templateOut) return;
+
+        const cashPaymentReminder = "⚠️ 尾款70%建議現金支付，見面後馬上結清，再開始行程。";
+        const depositNoticeText = "📌 【注意事項】：預約須完成定金支付才算正式成立。若定金未付，此預約單視同未成立，出租人保有優先安排檔期及不另行保留時間之權利。";
+
+        if (mode === 'postpone') {
+            const origDate = document.getElementById('calc-orig-date').value || '未填寫';
+            const origStart = document.getElementById('calc-orig-start')?.value || '18:00';
+            const origEnd = document.getElementById('calc-orig-end')?.value || '21:00';
+            const newDate = document.getElementById('calc-new-date').value || '未填寫';
+            const newStart = document.getElementById('calc-new-start')?.value || '19:00';
+            const newEnd = document.getElementById('calc-new-end')?.value || '22:00';
+            const origAmount = parseFloat(document.getElementById('calc-postpone-amount').value) || 0;
+            const transportOpt = document.getElementById('calc-postpone-transport')?.value || '委託人提供報銷';
+
+            let origSMin = timeToMinutes(origStart);
+            let origEMin = timeToMinutes(origEnd);
+            if (origEMin <= origSMin) origEMin += 1440;
+            let origHours = (origEMin - origSMin) / 60;
+            if (origHours <= 0) origHours = 3;
+
+            let newSMin = timeToMinutes(newStart);
+            let newEMin = timeToMinutes(newEnd);
+            if (newEMin <= newSMin) newEMin += 1440;
+            let newHours = (newEMin - newSMin) / 60;
+            if (newHours <= 0) newHours = 3;
+
+            let hourlyRate = origAmount > 0 ? (origAmount / origHours) : 350;
+            let newAmount = Math.round(newHours * hourlyRate);
+            let priceDiff = newAmount - origAmount;
+
+            let origDeposit = Math.round(origAmount * 0.3);
+            let newDeposit = Math.round(newAmount * 0.3);
+            let depositDiff = newDeposit - origDeposit;
+
+            let newTail = newAmount - newDeposit;
+            let newLenderTake = Math.round(newAmount * 0.8);
+
+            if (origAmount > 0) {
+                breakdownOut.innerHTML = `
+                    • 原時段：${origHours.toFixed(1)} 小時 ➔ 新時段：${newHours.toFixed(1)} 小時<br>
+                    • 原總額：$${origAmount.toLocaleString()} ➔ 新總額：<strong class="highlight-gold">$${newAmount.toLocaleString()}</strong><br>
+                    • 總金額差額：<strong class="danger-red">${priceDiff >= 0 ? '需補 NT$ ' + priceDiff.toLocaleString() : '需退 NT$ ' + Math.abs(priceDiff).toLocaleString()}</strong><br>
+                    • 定金調整：<strong class="highlight-cyan">${depositDiff >= 0 ? '多補 NT$ ' + depositDiff.toLocaleString() : '退還 NT$ ' + Math.abs(depositDiff).toLocaleString()}</strong><br>
+                    • 總訂金共多少：<strong>NT$ ${newDeposit.toLocaleString()}</strong><br>
+                    • 尾款多少（現金見面結清）：<strong class="highlight-cyan">NT$ ${newTail.toLocaleString()}</strong><br>
+                    • 出租人完單實拿 (80%)：<strong class="highlight-gold">NT$ ${newLenderTake.toLocaleString()}</strong>
+                `;
+            } else {
+                breakdownOut.innerHTML = `請填寫原委託總金額以進行精確試算。`;
+            }
+
+            const postponeTemplate = `【行程順延 / 更改時間通知單】\n針對本次媒合行程因故需更改時間，經試算明細如下：\n\n［委託人/出租人］：${client} / ${lender}\n• 原預約：${origDate} ${origStart}-${origEnd} (${origHours.toFixed(1)}小時)\n• 順延後：${newDate} ${newStart}-${newEnd} (${newHours.toFixed(1)}小時)\n\n⏱️ 【時數與費用精算明細】\n• 原總額：NT$ ${origAmount.toLocaleString()} ➔ 新總額：NT$ ${newAmount.toLocaleString()}\n• 總金額差額(要補/退)：${priceDiff >= 0 ? '需補 NT$ ' + priceDiff.toLocaleString() : '需退 NT$ ' + Math.abs(priceDiff).toLocaleString()}\n• 定金補多少(實際多拿)：${depositDiff >= 0 ? '多補 NT$ ' + depositDiff.toLocaleString() : '退還 NT$ ' + Math.abs(depositDiff).toLocaleString()}\n• 總訂金共多少：NT$ ${newDeposit.toLocaleString()}\n• 尾款多少：NT$ ${newTail.toLocaleString()}\n• 出租人實拿(80%)：NT$ ${newLenderTake.toLocaleString()}\n• 車資處理：${transportOpt}\n\n💡 ${cashPaymentReminder}\n\n${depositNoticeText}\n\n為確保後續權益無虞，請雙方確認無誤後回覆。管理員將更新系統紀錄！`;
+            templateOut.value = postponeTemplate;
+            return;
+        }
+
+        if (mode === 'client_request') {
+            const reqGender = document.getElementById('req-gender')?.value || '不拘';
+            const reqLocation = document.getElementById('req-location')?.value.trim() || '未填寫';
+            const reqUnit = document.getElementById('req-unit')?.value || '時薪';
+            const reqDate = document.getElementById('req-date')?.value || '未填寫';
+            const reqTStart = document.getElementById('req-time-start')?.value || '14:00';
+            const reqTEnd = document.getElementById('req-time-end')?.value || '17:00';
+            
+            let reqTimeStr = `${reqDate} ${reqTStart}-${reqTEnd}`;
+
+            const reqProject = document.getElementById('req-project')?.value.trim() || '未填寫';
+            const reqCondition = document.getElementById('req-condition')?.value.trim() || '未填寫';
+            const reqBudgetRaw = parseFloat(document.getElementById('req-budget')?.value) || 0;
+            const reqTransport = document.getElementById('req-transport')?.value || '委託人提供報銷';
+            const reqLenderRemark = document.getElementById('req-lender-remark')?.value.trim() || '不指定';
+
+            let finalBudgetStr = `NT$ ${reqBudgetRaw.toLocaleString()}`;
+            if (reqUnit === '時薪') {
+                let sM = timeToMinutes(reqTStart);
+                let eM = timeToMinutes(reqTEnd);
+                if (eM <= sM) eM += 1440;
+                let hrs = (eM - sM) / 60;
+                if (hrs <= 0) hrs = 3;
+                let totalB = Math.round(reqBudgetRaw * hrs);
+                finalBudgetStr = `時薪 NT$ ${reqBudgetRaw} × ${hrs.toFixed(1)}小時 = 總計 NT$ ${totalB.toLocaleString()}`;
+            } else {
+                finalBudgetStr = `計次總額 NT$ ${reqBudgetRaw.toLocaleString()}`;
+            }
+
+            const clientReqTemplate = `📋【閒人案內所｜委託需求單】\n【委託人】：${client}\n【指定出租人】：${reqLenderRemark}\n【性別需求】：${reqGender}\n【服務地點】：${reqLocation}\n【預約時間】：${reqTimeStr}\n【委託項目】：${reqProject}\n【希望條件】：${reqCondition}\n【預算報酬】：${finalBudgetStr}\n【車資處理】：${reqTransport}\n\n💡 ${cashPaymentReminder}\n\n${depositNoticeText}\n\n🛡️【官方安全與誠信守則】\n本平台嚴禁私人車輛移動與私密密閉空間，全面落實公開明亮場所與綠色陪伴！`;
+            templateOut.value = clientReqTemplate;
+            return;
+        }
+
+        const rawInputAmount = parseFloat(document.getElementById('calc-amount')?.value) || 0;
+        const unit = document.getElementById('calc-unit') ? document.getElementById('calc-unit').value : '時薪';
+        const date = document.getElementById('calc-date')?.value || '未填寫';
+        const startTime = document.getElementById('calc-time-start')?.value || '18:00';
+        const endTime = document.getElementById('calc-time-end')?.value || '21:00';
+
+        let amountVal = rawInputAmount;
+        let timeSummaryStr = `${date} ${startTime}-${endTime}`;
+
+        if (unit === '時薪') {
+            let sMin = timeToMinutes(startTime);
+            let eMin = timeToMinutes(endTime);
+            if (eMin <= sMin) eMin += 1440;
+            let hours = (eMin - sMin) / 60;
+            if (hours <= 0) hours = 3;
+            amountVal = Math.round(rawInputAmount * hours);
+            timeSummaryStr += ` (${hours.toFixed(1)} 小時)`;
+        } else {
+            amountVal = rawInputAmount;
+            timeSummaryStr += ` (計次收費)`;
+        }
+
+        const deposit = Math.round(amountVal * 0.3);
+        const tail = amountVal - deposit;
+        const opCost = Math.round(amountVal * 0.2);
+        const compPart = Math.round(amountVal * 0.1);
+        const lenderTake = Math.round(amountVal * 0.8);
+        const transportOpt = document.getElementById('calc-transport')?.value || '委託人提供報銷';
+
+        if (rawInputAmount > 0) {
+            breakdownOut.innerHTML = `
+                • 計費模式：${unit === '時薪' ? '時薪 $' + rawInputAmount + ' (計時)' : '計次總額 $' + rawInputAmount}<br>
+                • 總委託金額：<strong class="highlight-gold">NT$ ${amountVal.toLocaleString()}</strong><br>
+                • 30% 預約定金：<strong class="highlight-gold">NT$ ${deposit.toLocaleString()}</strong>（內含 20% 營運宣傳 $${opCost} + 10% 履約補償 $${compPart}）<br>
+                • 70% 現場尾款：<strong class="highlight-cyan">NT$ ${tail.toLocaleString()}</strong>（建議現金支付，見面後馬上結清）<br>
+                • 出租人完單實拿 (80%)：<strong class="highlight-gold">NT$ ${lenderTake.toLocaleString()}</strong>（尾款 $${tail} + 提撥 $${compPart}）
+            `;
+        } else {
+            breakdownOut.innerHTML = `請填寫金額數值以進行試算。`;
+        }
+
+        if (mode === 'offline') {
+            const offlineTemplate = `【線下委託｜30% 定金制】\n適用於客戶選擇現場付現的單。\n雙方確認預約後，請委託方先將 30% 定金匯至下方帳號。\n\n⚠️ 【平台免責與法律聲明】\n本平台僅為純粹之第三方資訊媒合與定金代收服務提供者。雙方一切實體外出行程、互動過程及人身安全，概由當事雙方自行負責。\n\n• 車資處理：${transportOpt}\n• 預約時段：${timeSummaryStr}\n• 委託總額：NT$ ${amountVal}\n• 應付定金 (30%): NT$ ${deposit}\n• 現場尾款 (70%): NT$ ${tail}\n［委託人/出租人］：${client} / ${lender}\n\n💡 ${cashPaymentReminder}\n\n${depositNoticeText}\n\n閱讀確認：[ 已詳細閱讀並同意平台免責與所有公告規範 ]`;
+            templateOut.value = offlineTemplate;
+        } else if (mode === 'online') {
+            const onlineTemplate = `【線上委託｜全額預付制】\n適用於全線上委託、不經手現場現金的單。\n雙方確認預約後，請委託方先將 全額款項匯至下方帳號。\n\n⚠️ 【平台免責與法律聲明】\n本平台僅為純粹之第三方資訊媒合與款項代收管理服務提供者。雙方一切實體外出行程、互動過程及人身安全，概由當事雙方自行負責。\n\n• 車資處理：${transportOpt}\n• 預約時段：${timeSummaryStr}\n• 委託金額 (全額): NT$ ${amountVal}\n［委託人/出租人］：${client} / ${lender}\n\n💡 ${cashPaymentReminder}\n\n${depositNoticeText}\n\n閱讀確認：[ 已詳細閱讀並同意平台免責與所有公告規範 ]`;
+            templateOut.value = onlineTemplate;
+        }
+    }
+
+    // 🚀 開啟發單同意書彈窗
+    function openAgreementModal() {
+        const text = document.getElementById('calc-template-output').value;
+        if (!text) { 
+            showToast("⚠️ 內容為空無法發送"); 
+            return; 
+        }
+        triggerHaptic(15);
+        document.getElementById('agreement-checkbox').checked = false;
+        document.getElementById('copy-agreement-modal').style.display = 'flex';
+    }
+
+    // ❌ 關閉發單同意書彈窗
+    function closeAgreementModal() {
+        triggerHaptic(10);
+        document.getElementById('copy-agreement-modal').style.display = 'none';
+    }
+
+    // ✅ 確認勾選後執行複製與跳轉 LINE 邏輯
+    function confirmAndSendDraft() {
+        const isChecked = document.getElementById('agreement-checkbox').checked;
+        if (!isChecked) {
+            triggerHaptic(30);
+            showToast("❌ 請先勾選同意書方可複製發送！");
+            return;
+        }
+        triggerHaptic(20);
+        closeAgreementModal();
+        
+        const text = document.getElementById('calc-template-output').value;
+        copyToClipboard(text);
+        const lineIntentUrl = `https://line.me/R/msg/text/?${encodeURIComponent(text)}`;
+        setTimeout(() => {
+            window.location.href = lineIntentUrl;
+        }, 600);
+    }
+
+    function openIncidentModal(defaultRole = '出租人', defaultTarget = '') {
+        triggerHaptic(15);
+        if (defaultRole) document.getElementById('inc-role').value = defaultRole;
+        if (defaultTarget) document.getElementById('inc-target').value = defaultTarget;
+        document.getElementById('incident-modal').style.display = 'flex';
+    }
+
+    function closeIncidentModal() {
+        triggerHaptic(10);
+        document.getElementById('incident-modal').style.display = 'none';
+    }
+
+    function submitIncidentReport() {
+        const role = document.getElementById('inc-role').value;
+        const target = document.getElementById('inc-target').value.trim() || '未填寫';
+        const amount = document.getElementById('inc-amount').value.trim() || '0';
+        const reason = document.getElementById('inc-reason').value;
+        const details = document.getElementById('inc-details').value.trim() || '未填寫詳細說明';
+
+        const reportTemplate = `【官方異常/不適單緊急通報存證】\n通報身分：${role}\n涉事對象：${target}\n委託總金額：NT$ ${amount}\n中止原因：${reason}\n現場處理與事證說明：\n${details}\n\n請管理員審核記錄並建立風控註記。`;
+
+        triggerHaptic(25);
+        copyToClipboard(reportTemplate);
+        closeIncidentModal();
+
+        const lineIntentUrl = `https://line.me/R/msg/text/?${encodeURIComponent(reportTemplate)}`;
+        setTimeout(() => {
+            window.location.href = lineIntentUrl;
+        }, 600);
+    }
+
+    function toggleFavorite(name, event) {
+        if (event) event.stopPropagation();
+        triggerHaptic(15);
+        const idx = favorites.indexOf(name);
+        if (idx > -1) {
+            favorites.splice(idx, 1);
+            showToast(`⭐ 已將 ${name} 移出口袋名單`);
+        } else {
+            favorites.push(name);
+            showToast(`⭐ 已將 ${name} 加入口袋名單！`);
+        }
+        localStorage.setItem('renjian_favorites', JSON.stringify(favorites));
+        applyFilters();
+        renderFeaturedSection();
+        renderHistoryTab();
+    }
+
+    function toggleClientFavorite(name, event) {
+        if (event) event.stopPropagation();
+        triggerHaptic(15);
+        const idx = clientFavorites.indexOf(name);
+        if (idx > -1) {
+            clientFavorites.splice(idx, 1);
+            showToast(`⭐ 已將委託人 ${name} 移出口袋名單`);
+        } else {
+            clientFavorites.push(name);
+            showToast(`⭐ 已將委託人 ${name} 加入口袋名單！`);
+        }
+        localStorage.setItem('renjian_client_favorites', JSON.stringify(clientFavorites));
+        renderClientsSection();
+        renderHistoryTab();
+    }
+
+    function selectStar(score) {
+        triggerHaptic(15);
+        currentSelectedScore = score;
+        for (let i = 1; i <= 5; i++) {
+            const btn = document.getElementById(`star-btn-${i}`);
+            if (btn) {
+                if (i <= score) {
+                    btn.style.background = 'rgba(255,176,32,0.45)';
+                    btn.style.borderColor = 'var(--neon-gold)';
+                    btn.style.boxShadow = '0 0 12px rgba(255,176,32,0.4)';
+                } else {
+                    btn.style.background = 'rgba(255,176,32,0.18)';
+                    btn.style.borderColor = 'rgba(255,176,32,0.45)';
+                    btn.style.boxShadow = 'none';
+                }
+            }
+        }
+    }
+
+    function submitRatingWithComment() {
+        if (currentSelectedScore === 0) {
+            showToast("❌ 請先點擊上方選擇星級（1至5星）！");
+            return;
+        }
+        const name = currentActiveTargetName;
+        triggerHaptic(25);
+        const now = Date.now();
+        const lastVoteKey = 'voted_' + currentTargetType + '_' + name;
+        const lastVoteTime = parseInt(localStorage.getItem(lastVoteKey) || '0');
+        const oneDayMs = 24 * 60 * 60 * 1000;
+
+        if (now - lastVoteTime < oneDayMs) {
+            const hoursLeft = Math.ceil((oneDayMs - (now - lastVoteTime)) / (60 * 60 * 1000));
+            showRatingPopup(`⏳ 防洗分機制啟動：\n您在 24 小時內已經對【${name}】評過分囉！\n請於 ${hoursLeft} 小時後再試。`);
+            return;
+        }
+
+        const commentInput = document.getElementById('rating-comment-input');
+        const commentText = commentInput ? commentInput.value.trim() : '';
+        const actionName = (currentTargetType === 'client') ? 'submitClientReview' : 'submitReview';
+
+        fetch(googleSheetApiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({
+                action: actionName,
+                partner: name,
+                score: currentSelectedScore,
+                comment: commentText,
+                timestamp: now
+            })
+        }).then(() => {
+            localStorage.setItem(lastVoteKey, String(now));
+            showToast("⭐ 評分與留言已成功寫入雲端試算表！");
+            setTimeout(fetchPartners, 1200); 
+        }).catch(err => {
+            console.error("送出評分失敗:", err);
+            showToast("⚠️ 送出失敗，請檢查網路連線");
+        });
+
+        if (commentInput) commentInput.value = '';
+        currentSelectedScore = 0;
+        closePartnerDetail();
+    }
+
+    function renderFeaturedSection() {
+        const container1 = document.getElementById('featured-grid-container');
+        const container2 = document.getElementById('home-featured-grid-container');
+        if (!container1 && !container2) return;
+
+        let scored = allPartnersData.map(r => {
+            const name = r[0], region = r[2], record = userRatings[name];
+            let avgScore = 0.0, count = 0;
+            if (record && record.scores && record.scores.length > 0) {
+                const sum = record.scores.reduce((a, b) => a + b, 0);
+                avgScore = sum / record.scores.length;
+                count = record.scores.length;
+            }
+            let scoreBonus = avgScore * 10;
+            let favBonus = favorites.includes(name) ? 2.0 : 0;
+            let finalScore = (avgScore * 10) + (count * 1.5) + scoreBonus + favBonus;
+            return { name: name, region: region, avgScore: avgScore, count: count, score: finalScore };
+        });
+
+        scored.sort((a, b) => b.score - a.score);
+        const top3 = scored.slice(0, 3);
+
+        let html = '';
+        top3.forEach((p, index) => {
+            const rankClasses = ['rank-1', 'rank-2', 'rank-3'];
+            const rankClass = rankClasses[index];
+            const medals = ['👑 榜首', '🥈 亞軍', '🥉 季軍'];
+            const medalLabel = medals[index];
+            const scoreText = p.count > 0 ? `⭐ ${p.avgScore.toFixed(1)} 分 (${p.count} 單)` : `⭐ 0.0 分 (0 單)`;
+
+            html += `
+                <div class="featured-chip-vertical ${rankClass}" onclick="triggerHaptic(15); openTargetDetail('${escapeHtml(String(p.name))}', 'partner')">
+                    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <div style="display: flex; align-items: center; gap: 12px; text-align: left;">
+                            <span style="font-size: 13px; font-weight: 900; letter-spacing: 0.5px; min-width: 60px; text-shadow: 0 0 10px rgba(255,255,255,0.4);">${medalLabel}</span>
+                            <div>
+                                <div style="font-size: 14.5px; font-weight: 900; color: #fff; margin-bottom: 2px;">👤 ${escapeHtml(String(p.name))}</div>
+                                <div style="font-size: 12px; color: var(--text-gray); font-weight: 700;">📍 地點：${escapeHtml(String(p.region))}</div>
+                            </div>
+                        </div>
+                        <div style="font-size: 12px; font-weight: 900; color: #fff; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 14px; white-space: nowrap;">
+                            ${scoreText}
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        if (container1) container1.innerHTML = html;
+        if (container2) container2.innerHTML = html;
+    }
+
+    function renderPartners(dataArray) {
+        const container = document.getElementById('partner-list-container');
+        if (!container) return;
+        let html = '';
+        dataArray.forEach(r => {
+            if (!r || !r[0]) return;
+            const name = r[0] || '', gender = r[1] || '', region = r[2] || '', intro = r[3] || '';
+            const record = userRatings[name];
+            let avg = 0.0, count = 0;
+            if (record && record.scores && record.scores.length > 0) {
+                avg = record.scores.reduce((a, b) => a + b, 0) / record.scores.length;
+                count = record.scores.length;
+            }
+            const rating = count > 0 ? `⭐ ${avg.toFixed(1)} (${count}單)` : `⭐ 0.0 (0單)`;
+            const badgeLabel = count > 0 ? `<span class="partner-tag tag-badge">🏆 口碑認證</span>` : `<span class="partner-tag tag-badge">✨ 新進出租人</span>`;
+
+            let aiTags = generateAiHumanTags(intro);
+            const regs = getRegionsArray(region);
+            const isFav = favorites.includes(name);
+
+            let tagsHtml = regs.map(reg => `<span class="partner-tag tag-region">${escapeHtml(reg)}</span>`).join(' ');
+            aiTags.slice(0, 2).forEach(srv => { tagsHtml += `<span class="partner-tag tag-ai">${escapeHtml(srv)}</span>`; });
+            tagsHtml += badgeLabel;
+
+            html += `
+                <div class="partner-card" onclick="openTargetDetail('${escapeHtml(String(name))}', 'partner')">
+                    <div class="partner-top">
+                        <div class="partner-name">👤 ${escapeHtml(String(name))} <span class="partner-rating">${rating}</span></div>
+                    </div>
+                    <div class="partner-tags">${gender ? `<span class="partner-tag tag-gender">${escapeHtml(String(gender))}</span>` : ''}${tagsHtml}</div>
+                    <div class="partner-intro">${escapeHtml(String(intro))}</div>
+                    <div class="card-action-bar" onclick="event.stopPropagation()">
+                        <div class="card-btn-group">
+                            <button class="card-fav-btn" onclick="toggleFavorite('${escapeHtml(String(name))}', event)">${isFav ? '❤️ 已收藏' : '🤍 收藏'}</button>
+                            <button class="card-fav-btn" onclick="sharePartner('${escapeHtml(String(name))}', '${escapeHtml(String(region))}', '${escapeHtml(String(intro)).replace(/'/g, "\\'")}', event)">📤 分享</button>
+                        </div>
+                        <button class="card-copy-btn" onclick="selectLenderAndScroll('${escapeHtml(String(name))}')">📋 預約此出租人</button>
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML = html || `<div style="text-align:center; color: var(--text-gray); font-size:13px; padding:20px;">沒有符合條件的出租人</div>`;
+    }
+
+    function selectLenderAndScroll(name) {
+        triggerHaptic(15);
+        switchTab('home');
+        
+        const calcMode = document.getElementById('calc-mode');
+        if (calcMode) {
+            calcMode.value = 'client_request';
+            toggleCalcModeFields();
+        }
+        
+        const reqLenderRemarkInput = document.getElementById('req-lender-remark');
+        if (reqLenderRemarkInput) {
+            reqLenderRemarkInput.value = name;
+            updateCalcAndTemplate();
+        }
+        
+        const calcBox = document.getElementById('bottom-calc-box');
+        if (calcBox) {
+            calcBox.scrollIntoView({ behavior: 'smooth' });
+        }
+        showToast(`✨ 已將指定出租人【${name}】代入委託需求單格式！`);
+    }
+
+    function renderClientFeaturedSection() {
+        const container = document.getElementById('client-featured-grid-container');
+        if (!container) return;
+
+        let scored = allClientsData.map(c => {
+            const name = c[0], region = c[2], record = clientRatings[name];
+            let avgScore = 0.0, count = 0;
+            if (record && record.scores && record.scores.length > 0) {
+                const sum = record.scores.reduce((a, b) => a + b, 0);
+                avgScore = sum / record.scores.length;
+                count = record.scores.length;
+            }
+            let finalScore = (avgScore * 10) + (count * 1.5);
+            return { name: name, region: region, avgScore: avgScore, count: count, score: finalScore };
+        });
+
+        scored.sort((a, b) => b.score - a.score);
+        const top3 = scored.slice(0, 3);
+
+        let html = '';
+        top3.forEach((c, index) => {
+            const rankClasses = ['rank-1', 'rank-2', 'rank-3'];
+            const rankClass = rankClasses[index];
+            const medals = ['👑 榜首', '🥈 亞軍', '🥉 季軍'];
+            const medalLabel = medals[index];
+            const scoreText = c.count > 0 ? `⭐ ${c.avgScore.toFixed(1)} 分 (${c.count} 評)` : `⭐ 0.0 分 (0 評)`;
+
+            html += `
+                <div class="featured-chip-vertical ${rankClass}" onclick="triggerHaptic(15); openTargetDetail('${escapeHtml(String(c.name))}', 'client')">
+                    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <div style="display: flex; align-items: center; gap: 12px; text-align: left;">
+                            <span style="font-size: 13px; font-weight: 900; letter-spacing: 0.5px; min-width: 60px; text-shadow: 0 0 10px rgba(255,255,255,0.4);">${medalLabel}</span>
+                            <div>
+                                <div style="font-size: 14.5px; font-weight: 900; color: #fff; margin-bottom: 2px;">👤 ${escapeHtml(String(c.name))}</div>
+                                <div style="font-size: 12px; color: var(--text-gray); font-weight: 700;">📍 地點：${escapeHtml(String(c.region))}</div>
+                            </div>
+                        </div>
+                        <div style="font-size: 12px; font-weight: 900; color: #fff; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 14px; white-space: nowrap;">
+                            ${scoreText}
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    function renderClientsList(dataArray) {
+        const container = document.getElementById('client-list-container');
+        if (!container) return;
+        let html = '';
+        dataArray.forEach(c => {
+            const name = c[0], gender = c[1], region = c[2], intro = c[3];
+            const record = clientRatings[name] || { scores: [], comments: [] };
+            let avg = 0.0, count = 0;
+            if (record.scores && record.scores.length > 0) {
+                avg = record.scores.reduce((a, b) => a + b, 0) / record.scores.length;
+                count = record.scores.length;
+            }
+            const rating = count > 0 ? `⭐ ${avg.toFixed(1)} (${count}評)` : `⭐ 0.0 (0評)`;
+            const isFav = clientFavorites.includes(name);
+
+            html += `
+                <div class="partner-card" onclick="openTargetDetail('${escapeHtml(String(name))}', 'client')">
+                    <div class="partner-top">
+                        <div class="partner-name">👤 ${escapeHtml(String(name))} <span class="partner-rating">${rating}</span></div>
+                    </div>
+                    <div class="partner-tags">
+                        <span class="partner-tag tag-gender">${escapeHtml(gender)}</span>
+                        <span class="partner-tag tag-region">${escapeHtml(region)}</span>
+                        <span class="partner-tag tag-badge">👤 委託貴賓</span>
+                    </div>
+                    <div class="partner-intro">${intro}</div>
+                    <div class="card-action-bar" onclick="event.stopPropagation()">
+                        <div class="card-btn-group">
+                            <button class="card-fav-btn" onclick="toggleClientFavorite('${escapeHtml(String(name))}', event)">${isFav ? '❤️ 已收藏' : '🤍 收藏'}</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML = html || `<div style="text-align:center; color: var(--text-gray); font-size:13px; padding:20px;">沒有符合條件的委託人</div>`;
+        renderClientFeaturedSection();
+    }
+
+    function populateClientGenderOptions() {
+        const gSelect = document.getElementById('client-filter-gender');
+        if (!gSelect) return;
+        const genders = [...new Set(allClientsData.map(c => c[1]).filter(Boolean))];
+        gSelect.innerHTML = '<option value="">請選擇</option>' + genders.map(g => `<option value="${escapeHtml(g)}">${escapeHtml(g)}</option>`).join('');
+    }
+
+    function populateClientRegionOptions() {
+        const genderVal = document.getElementById('client-filter-gender')?.value || '';
+        const rSelect = document.getElementById('client-filter-region');
+        if (!rSelect) return;
+        let filtered = genderVal ? allClientsData.filter(c => c[1] === genderVal) : allClientsData;
+        const regions = [...new Set(filtered.map(c => c[2]).filter(Boolean))];
+        rSelect.innerHTML = '<option value="">請選擇</option>' + regions.map(r => `<option value="${escapeHtml(r)}">${escapeHtml(r)}</option>`).join('');
+    }
+
+    function populateClientNameOptions() {
+        const genderVal = document.getElementById('client-filter-gender')?.value || '';
+        const regionVal = document.getElementById('client-filter-region')?.value || '';
+        const nSelect = document.getElementById('client-filter-name');
+        if (!nSelect) return;
+
+        let filtered = allClientsData;
+        if (genderVal) filtered = filtered.filter(c => c[1] === genderVal);
+        if (regionVal) filtered = filtered.filter(c => {
+            const regs = getRegionsArray(c[2]);
+            return regs.includes(regionVal) || regs.includes('全台');
+        });
+
+        const names = [...new Set(filtered.map(c => c[0]).filter(Boolean))];
+        nSelect.innerHTML = '<option value="">請選擇</option>' + names.map(n => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
+    }
+
+    function onClientGenderChange() {
+        populateClientRegionOptions();
+        populateClientNameOptions();
+        applyClientFilters();
+    }
+
+    function onClientRegionChange() {
+        populateClientNameOptions();
+        applyClientFilters();
+    }
+
+    function applyClientFilters() {
+        const genderVal = document.getElementById('client-filter-gender')?.value || '';
+        const regionVal = document.getElementById('client-filter-region')?.value || '';
+        const nameVal = document.getElementById('client-filter-name')?.value || '';
+        const keywordVal = document.getElementById('client-filter-keyword')?.value.toLowerCase().trim() || '';
+        const sortVal = document.getElementById('client-filter-sort')?.value || 'default';
+
+        let result = [...allClientsData];
+        if (genderVal) result = result.filter(c => c[1] === genderVal);
+        if (regionVal) {
+            result = result.filter(c => {
+                const regs = getRegionsArray(c[2]);
+                return regs.includes(regionVal) || regs.includes('全台');
+            });
+        }
+        if (nameVal) result = result.filter(c => c[0] === nameVal);
+        if (keywordVal) {
+            result = result.filter(c => [c[0], c[1], c[2], c[3]].join(' ').toLowerCase().includes(keywordVal));
+        }
+
+        result.sort((a, b) => {
+            const recA = clientRatings[a[0]] || { scores: [] };
+            const recB = clientRatings[b[0]] || { scores: [] };
+            let avgA = recA.scores.length > 0 ? recA.scores.reduce((x, y) => x + y, 0) / recA.scores.length : 0;
+            let avgB = recB.scores.length > 0 ? recB.scores.reduce((x, y) => x + y, 0) / recB.scores.length : 0;
+            if (sortVal === 'rating') return avgB - avgA;
+            return 0;
+        });
+
+        renderClientsList(result);
+    }
+
+    function renderClientsSection() {
+        populateClientGenderOptions();
+        populateClientRegionOptions();
+        populateClientNameOptions();
+        applyClientFilters();
+    }
+
+    function renderHistoryTab() {
+        const favContainer = document.getElementById('history-favorites-container');
+        if (favContainer) {
+            let combinedFavs = [...favorites, ...clientFavorites.map(c => c + ' (委)')];
+            if (combinedFavs.length === 0) {
+                favContainer.innerHTML = `<div style="font-size: 12.5px; color: var(--text-gray);">目前尚無收藏的對象。</div>`;
+            } else {
+                favContainer.innerHTML = combinedFavs.map(name => `
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 14px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 800; font-size: 13.5px; color: #fff;">⭐ ${escapeHtml(String(name))}</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        const viewedContainer = document.getElementById('history-viewed-container');
+        if (viewedContainer) {
+            let viewed = JSON.parse(localStorage.getItem('renjian_viewed') || '[]');
+            if (viewed.length === 0) {
+                viewedContainer.innerHTML = `<div style="font-size: 12.5px; color: var(--text-gray);">尚無瀏覽足跡。</div>`;
+            } else {
+                viewedContainer.innerHTML = viewed.map(name => `
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 14px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 800; font-size: 13.5px; color: #fff;">👣 ${escapeHtml(String(name))}</span>
+                    </div>
+                `).join('');
+            }
+        }
+    }
+
+    function sharePartner(name, region, intro, event) {
+        if (event) event.stopPropagation();
+        triggerHaptic(15);
+        const shareData = {
+            title: '閒人案內所 ｜ 質感對象推薦',
+            text: `推薦對象 👤 ${name} (${region})\n簡介：${intro}`,
+            url: OFFICIAL_WEBSITE_URL
+        };
+        if (navigator.share) {
+            navigator.share(shareData).catch(() => {});
+        } else {
+            copyToClipboard(`【推薦】\n名字：${name}\n地區：${region}\n介紹：${intro}\n網址：${shareData.url}`);
+        }
+    }
+
+    function openTargetDetail(name, type) {
+        triggerHaptic(15);
+        currentActiveTargetName = name;
+        currentTargetType = type;
+        currentSelectedScore = 0;
+
+        let viewed = JSON.parse(localStorage.getItem('renjian_viewed') || '[]');
+        if (!viewed.includes(name)) {
+            viewed.unshift(name);
+            if (viewed.length > 10) viewed.pop();
+            localStorage.setItem('renjian_viewed', JSON.stringify(viewed));
+        }
+
+        let targetData = (type === 'partner') ? allPartnersData.find(item => item[0] === name) : allClientsData.find(item => item[0] === name);
+        if (!targetData) return;
+
+        const gender = targetData[1], region = targetData[2], intro = targetData[3];
+
+        document.getElementById('sheet-name').innerText = (type === 'partner') ? `👤 出租人：${name}` : `👤 委託人：${name}`;
+        
+        const record = (type === 'partner') ? (userRatings[name] || { scores: [], comments: [] }) : (clientRatings[name] || { scores: [], comments: [] });
+        let avg = 0.0, count = 0;
+        if (record.scores && record.scores.length > 0) {
+            avg = record.scores.reduce((a, b) => a + b, 0) / record.scores.length;
+            count = record.scores.length;
+        }
+        document.getElementById('sheet-rating').innerText = count > 0 ? `⭐ ${avg.toFixed(1)} (${count}則)` : `⭐ 0.0 (0則)`;
+        document.getElementById('sheet-intro').innerText = intro || '暫無詳細介紹';
+        
+        let badgesHtml = (type === 'partner') ? `<span style="font-size:11px; background:rgba(255,176,32,0.15); color:var(--neon-gold); border:1px solid rgba(255,176,32,0.4); padding:3px 8px; border-radius:8px;">🌟 先鋒出租人</span>` : `<span style="font-size:11px; background:rgba(0,240,255,0.15); color:var(--neon-cyan); border:1px solid rgba(0,240,255,0.4); padding:3px 8px; border-radius:8px;">💎 委託貴賓</span>`;
+        if (count > 0 && avg >= 4.5) {
+            badgesHtml += `<span style="font-size:11px; background:rgba(179,102,255,0.15); color:#d8b4fe; border:1px solid rgba(179,102,255,0.4); padding:3px 8px; border-radius:8px;">🎯 零負評代表</span>`;
+        }
+        document.getElementById('sheet-badges-container').innerHTML = badgesHtml;
+        
+        let tagsHtml = gender ? `<span class="partner-tag tag-gender">${escapeHtml(String(gender))}</span>` : '';
+        getRegionsArray(region).forEach(reg => {
+            tagsHtml += `<span class="partner-tag tag-region">${escapeHtml(reg)}</span>`;
+        });
+        document.getElementById('sheet-tags').innerHTML = tagsHtml;
+        
+        document.getElementById('rating-section-title').innerText = (type === 'partner') ? "⭐ 給予出租人評分與留言：" : "⭐ 給予委託人評價與留言：";
+        document.getElementById('comments-list-title').innerText = (type === 'partner') ? "💬 用戶真實評價留言：" : "💬 委託人真實評價紀錄：";
+
+        const ratingActionArea = document.getElementById('rating-action-area');
+        let starsHtml = '';
+        for (let i = 1; i <= 5; i++) {
+            starsHtml += `<button id="star-btn-${i}" onclick="selectStar(${i})" style="flex:1; background: rgba(255,176,32,0.18); border: 1px solid rgba(255,176,32,0.45); color: #ffb020; padding: 7px 4px; border-radius: 10px; font-weight: 800; cursor: pointer; font-size: 11.5px; transition: 0.2s; text-align:center;">⭐ ${i}星</button>`;
+        }
+        ratingActionArea.innerHTML = starsHtml;
+
+        const commentsListContainer = document.getElementById('sheet-comments-list');
+        if (record.comments && record.comments.length > 0) {
+            let comHtml = '';
+            record.comments.slice(-4).reverse().forEach(c => {
+                comHtml += `<div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); padding:6px 10px; border-radius:10px; font-size:11.5px; color:#e2dcf5;">💬 "${escapeHtml(String(c))}"</div>`;
+            });
+            commentsListContainer.innerHTML = comHtml;
+        } else {
+            commentsListContainer.innerHTML = `<div style="font-size:11.5px; color:var(--text-gray); padding:4px 0;">尚無真實評分留言記錄。</div>`;
+        }
+
+        const isFav = (type === 'partner') ? favorites.includes(name) : clientFavorites.includes(name);
+        const favBtn = document.getElementById('sheet-fav-btn');
+        favBtn.innerText = isFav ? '❤️ 已收藏' : '🤍 收藏';
+        favBtn.onclick = () => {
+            if (type === 'partner') toggleFavorite(name);
+            else toggleClientFavorite(name);
+            openTargetDetail(name, type);
+        };
+
+        document.getElementById('sheet-book-btn').onclick = () => {
+            triggerHaptic(15);
+            closePartnerDetail();
+            openBookingModal(name, region);
+        };
+        
+        document.getElementById('partner-detail-modal').style.display = 'flex';
+    }
+
+    function closePartnerDetail() {
+        document.getElementById('partner-detail-modal').style.display = 'none';
+    }
+
+    const themes = ['', 'theme-amber', 'theme-cyan', 'theme-pink'];
+    const themeNames = ['經典賽博紫', '琥珀金溫馨', '極光湛藍', '魅惑桃紅'];
+    let currentThemeIdx = 0;
+    function toggleTheme() {
+        document.body.classList.remove('theme-amber', 'theme-cyan', 'theme-pink');
+        currentThemeIdx = (currentThemeIdx + 1) % themes.length;
+        if (themes[currentThemeIdx]) {
+            document.body.classList.add(themes[currentThemeIdx]);
+            localStorage.setItem('renjian_theme', themes[currentThemeIdx]);
+        } else {
+            localStorage.setItem('renjian_theme', 'purple');
+        }
+        showToast(`🎨 主題已切換：${themeNames[currentThemeIdx]}`);
+    }
+
+    function openBookingModal(name, region) {
+        triggerHaptic(15);
+        currentBookingPartner = name;
+        currentBookingRegion = region;
+        document.getElementById('modal-partner-title').innerText = `📋 聯繫：${name} (${region})`;
+        
+        const today = new Date().toISOString().split('T')[0];
+        const dateInput = document.getElementById('modal-date');
+        dateInput.value = today;
+        dateInput.min = today;
+
+        document.getElementById('booking-modal').style.display = 'flex';
+    }
+    function closeBookingModal() {
+        document.getElementById('booking-modal').style.display = 'none';
+    }
+    function submitBookingModal() {
+        const date = document.getElementById('modal-date').value || '未填寫';
+        const time = document.getElementById('modal-time').value || '18:00-21:00';
+        const amount = document.getElementById('modal-amount').value || '未填寫';
+        const template = `【預約 / 聯繫詢問】\n我想聯繫/預約對象：${currentBookingPartner}\n活動地區：${currentBookingRegion}\n預約日期：${date}\n預約時間：${time}\n委託總額：$${amount}\n\n⚠️ 預約須完成定金支付才算正式成立。若定金未付，此預約單視同未成立。\n⚠️ 尾款70%建議現金支付，見面後馬上結清，再開始行程。\n\n請問目前時間是否方便？✨`;
+        
+        navigator.clipboard.writeText(template).then(() => {
+            showToast("📋 已複製格式並開啟 LINE！");
+            setTimeout(() => { window.location.href = 'https://lin.ee/9R2sLhB'; }, 800);
+        }).catch(() => {
+            window.location.href = 'https://lin.ee/9R2sLhB';
+        });
+
+        closeBookingModal();
+    }
+
+    function selectPill(pillName, el) {
+        document.querySelectorAll('.tag-pill').forEach(p => p.classList.remove('active'));
+        el.classList.add('active');
+        selectedPill = pillName;
+        applyFilters();
+    }
+
+    function getRegionsArray(regionStr) {
+        if (!regionStr) return [];
+        return String(regionStr).split(/[,，、/]+/).map(s => s.trim()).filter(Boolean);
+    }
+
+    async function fetchPartners() {
+        try {
+            const response = await fetch(googleSheetApiUrl + '?t=' + Date.now());
+            if (!response.ok) throw new Error("API Network response was not ok");
+            const data = await response.json();
+
+            if (data && typeof data === 'object') {
+                if (data.ratings) userRatings = data.ratings;
+                if (data.clientRatings) clientRatings = data.clientRatings;
+                
+                if (data.clients && Array.isArray(data.clients) && data.clients.length > 1) {
+                    const cFiltered = data.clients.filter((row, idx) => {
+                        if (idx === 0) return false; 
+                        if (!row || !row[0]) return false;
+                        return true;
+                    });
+                    if (cFiltered.length > 0) {
+                        allClientsData = cFiltered.map(r => [String(r[0]), String(r[1] || '不拘'), String(r[2] || '全台'), String(r[3] || '尋求專業優質陪伴服務')]);
+                    }
+                }
+
+                const partnersArr = Array.isArray(data.partners) ? data.partners : null;
+                if (partnersArr && Array.isArray(partnersArr) && partnersArr.length > 0) {
+                    const filtered = partnersArr.filter((row, idx) => {
+                        if (idx === 0) return false; 
+                        if (!row || !row[0]) return false;
+                        const nameStr = String(row[0]).trim();
+                        if (nameStr === "名字" || nameStr.toLowerCase() === "name") return false;
+                        return true;
+                    });
+                    if (filtered.length > 0) {
+                        allPartnersData = filtered;
+                    }
+                }
+            }
+        } catch (error) {
+            console.error("試算表 API 同步失敗，自動啟用本地預設名單:", error);
+        }
+        updatePartnersData();
+    }
+
+    async function autoUpdateRoomLights() {
+        try {
+            const response = await fetch('rooms.json?t=' + Date.now());
+            if (!response.ok) return;
+            const statusData = await response.json();
+            
+            document.querySelectorAll('.room-item').forEach(item => {
+                const roomId = item.getAttribute('data-room');
+                if (roomId && statusData[roomId] !== undefined) {
+                    if (statusData[roomId]) {
+                        item.classList.add('busy');
+                    } else {
+                        item.classList.remove('busy');
+                    }
+                }
+            });
+        } catch (e) {
+            console.error("載入房間即時狀態失敗", e);
+        }
+    }
+
+    function updatePartnersData() {
+        populateGenderOptions();
+        populateRegionOptions();
+        populateNameOptions();
+        renderFeaturedSection();
+        renderClientsSection();
+        applyFilters(); 
+    }
+
+    function populateGenderOptions() {
+        const select = document.getElementById('filter-gender');
+        if (!select) return;
+        const genders = [...new Set(allPartnersData.map(r => r[1]).filter(Boolean))];
+        let html = '<option value="">請選擇</option>';
+        genders.forEach(g => html += `<option value="${escapeHtml(String(g))}">${escapeHtml(String(g))}</option>`);
+        select.innerHTML = html;
+    }
+
+    function populateRegionOptions() {
+        const genderVal = document.getElementById('filter-gender')?.value || '';
+        const select = document.getElementById('filter-region');
+        if (!select) return;
+        let filtered = genderVal ? allPartnersData.filter(r => String(r[1]) === genderVal) : allPartnersData;
+        const regionSet = new Set();
+        filtered.forEach(r => getRegionsArray(r[2]).forEach(reg => regionSet.add(reg)));
+        let html = '<option value="">請選擇</option>';
+        [...regionSet].forEach(reg => html += `<option value="${escapeHtml(reg)}">${escapeHtml(reg)}</option>`);
+        select.innerHTML = html;
+    }
+
+    function populateNameOptions() {
+        const genderVal = document.getElementById('filter-gender')?.value || '';
+        const regionVal = document.getElementById('filter-region')?.value || '';
+        const select = document.getElementById('filter-name');
+        if (!select) return;
+        let filtered = allPartnersData;
+        if (genderVal) filtered = filtered.filter(r => String(r[1]) === genderVal);
+        if (regionVal) filtered = filtered.filter(r => {
+            const regs = getRegionsArray(r[2]);
+            return regs.includes(regionVal) || regs.includes('全台');
+        });
+        let html = '<option value="">請選擇</option>';
+        [...new Set(filtered.map(r => r[0]).filter(Boolean))].forEach(n => html += `<option value="${escapeHtml(String(n))}">${escapeHtml(String(n))}</option>`);
+        select.innerHTML = html;
+    }
+
+    function onGenderChange() { populateRegionOptions(); populateNameOptions(); applyFilters(); }
+    function onRegionChange() { populateNameOptions(); applyFilters(); }
+
+    function applyFilters() {
+        const genderVal = document.getElementById('filter-gender')?.value || '';
+        const regionVal = document.getElementById('filter-region')?.value || '';
+        const nameVal = document.getElementById('filter-name')?.value || '';
+        const keywordVal = document.getElementById('filter-keyword')?.value.toLowerCase().trim() || '';
+        const sortVal = document.getElementById('filter-sort')?.value || 'default';
+
+        let result = [...allPartnersData];
+        if (selectedPill === '⭐ 收藏') {
+            result = result.filter(r => favorites.includes(r[0]));
+        } else if (selectedPill && selectedPill !== '全部') {
+            result = result.filter(r => {
+                let aiTgs = generateAiHumanTags(r[3]);
+                let searchableStr = [r[0], r[1], r[2], r[3], ...aiTgs].join(' ').toLowerCase();
+                return searchableStr.includes(selectedPill.toLowerCase());
+            });
+        }
+
+        if (genderVal) result = result.filter(r => String(r[1]) === genderVal);
+        if (regionVal) {
+            result = result.filter(r => {
+                const regs = getRegionsArray(r[2]);
+                return regs.includes(regionVal) || regs.includes('全台');
+            });
+        }
+        if (nameVal) result = result.filter(r => String(r[0]) === nameVal);
+        if (keywordVal) {
+            result = result.filter(r => {
+                let aiTgs = generateAiHumanTags(r[3]);
+                let searchableStr = [r[0], r[1], r[2], r[3], ...aiTgs].join(' ').toLowerCase();
+                return searchableStr.includes(keywordVal);
+            });
+        }
+
+        result.sort((a, b) => {
+            const recordA = userRatings[a[0]] || { scores: [] };
+            const recordB = userRatings[b[0]] || { scores: [] };
+            let avgA = recordA.scores.length > 0 ? recordA.scores.reduce((x, y) => x + y, 0) / recordA.scores.length : 0;
+            let avgB = recordB.scores.length > 0 ? recordB.scores.reduce((x, y) => x + y, 0) / recordB.scores.length : 0;
+            let countA = recordA.scores.length;
+            let countB = recordB.scores.length;
+
+            if (sortVal === 'rating') return avgB - avgA;
+            if (sortVal === 'orders') return countB - countA;
+            return 0;
+        });
+
+        renderPartners(result);
+    }
+
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+        const targetBtn = document.querySelector(`.tab-btn[onclick*="${tabId}"]`);
+        if (targetBtn) targetBtn.classList.add('active');
+        const targetPanel = document.getElementById('panel-' + tabId);
+        if (targetPanel) targetPanel.classList.add('active');
+
+        if (tabId === 'history') renderHistoryTab();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function switchSubTab(subTabId) {
+        document.querySelectorAll('.sub-tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.sub-tab-panel').forEach(panel => panel.classList.remove('active'));
+        const subBtn = document.querySelector(`.sub-tab-btn[onclick*="${subTabId}"]`);
+        if (subBtn) subBtn.classList.add('active');
+        const subPanel = document.getElementById('sub-panel-' + subTabId);
+        if (subPanel) subPanel.classList.add('active');
+    }
+
+    function checkOnboardingStatus() {
+        const isAgreed = localStorage.getItem('renjian_member_agreed');
+        if (!isAgreed) {
+            renderOnboardWelcome();
+            document.getElementById('onboarding-modal').style.display = 'flex';
+        }
+    }
+
+    function renderOnboardWelcome() {
+        const box = document.getElementById('onboard-step-box');
+        if (!box) return;
+        box.innerHTML = `
+            <div style="font-size: 34px; margin-bottom: 8px; text-align:center;">👻</div>
+            <h2 style="color: var(--neon-gold); font-size: 17.5px; font-weight: 900; margin-bottom: 8px; text-align:center; letter-spacing: 0.8px; text-shadow: 0 0 12px rgba(255,176,32,0.4);">歡迎來到 閒人案內所 ｜ 官方傳送門</h2>
+            <p style="font-size: 13px; color: var(--text-gray); line-height: 1.7; margin-bottom: 22px; text-align:center;">
+                為了守護社群信譽與保障您的權益，請選擇您的身分狀態以展開新手實戰任務：
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button class="tool-btn" onclick="triggerHaptic(15); renderOnboardRoleSelect();" style="background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue)); color: #030205; font-weight: 900; margin-top:0; padding:14px;">✨ 我是新朋友 ➔ 帶我走一次新手實戰導覽</button>
+                <button class="tool-btn" onclick="triggerHaptic(15); confirmReturningMember();" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-weight: 800; margin-top:0; padding:14px;">🛡️ 我已是舊成員 ➔ 快速通關並遵守規範</button>
+            </div>
+        `;
+    }
+
+    function renderOnboardRoleSelect() {
+        const box = document.getElementById('onboard-step-box');
+        if (!box) return;
+        box.innerHTML = `
+            <div style="font-size: 28px; margin-bottom: 6px; text-align:center;">🎯</div>
+            <h3 style="color: var(--neon-cyan); font-size: 16px; font-weight: 900; margin-bottom: 8px; text-align:center; text-shadow: 0 0 10px rgba(0,240,255,0.4);">請問您本次的冒險身分是？</h3>
+            <p style="font-size: 12px; color: var(--text-gray); line-height: 1.6; margin-bottom: 20px; text-align:center;">系統將為您量身打造專屬的打單、匯款與安全紅線實戰流程！</p>
+            <div style="display: flex; gap: 10px; margin-bottom: 14px;">
+                <button class="tool-btn" onclick="triggerHaptic(15); startTutorial('client', 1);" style="flex:1; background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue)); margin-top:0; font-weight:900; padding:14px;">👤 我是委託人</button>
+                <button class="tool-btn" onclick="triggerHaptic(15); startTutorial('partner', 1);" style="flex:1; background: linear-gradient(135deg, var(--neon-gold), var(--neon-orange)); color:#030205; margin-top:0; font-weight:900; padding:14px;">👥 我是出租人</button>
+            </div>
+            <button onclick="renderOnboardWelcome()" style="background:none; border:none; color:var(--text-muted); font-size:12px; cursor:pointer; width:100%; text-align:center; text-decoration:underline;">返回上一步</button>
+        `;
+    }
+
+    function startTutorial(role, step) {
+        triggerHaptic(15);
+        const box = document.getElementById('onboard-step-box');
+        if (!box) return;
+
+        let title = "";
+        let bodyHtml = "";
+
+        if (role === 'client') {
+            if (step === 1) {
+                title = "📌 委託人實戰教學 (1/3)：挑選對象與發單打單";
+                bodyHtml = `
+                    • <strong class="highlight-gold">步驟一</strong>：至「出租人」專區挑選心儀對象，點擊 <strong class="highlight-cyan">📋 預約此出租人</strong>。<br>
+                    • <strong class="highlight-gold">步驟二</strong>：使用首頁下方的 <strong class="highlight-cyan">🧮 委託金額試算與官方發單格式生成器</strong>，填入方案與金額，系統會自動生成標準發單文字。<br>
+                    • ⚠️ <strong class="danger-red">嚴禁模糊字眼</strong>：發單必須具體記載目的、地點、時間與預算，<strong class="danger-red">嚴禁使用「你懂的」等違規暗語</strong>！
+                `;
+            } else if (step === 2) {
+                title = "📌 委託人實戰教學 (2/3)：定金轉帳與尾款現金結清";
+                bodyHtml = `
+                    • <strong class="highlight-gold">步驟三 (定金 30%)</strong>：預約成立後，須先匯款 <strong class="highlight-cyan">30% 定金</strong>（含 20% 營運宣傳與 10% 履約補償）。可直接掃下方 <strong class="highlight-cyan">TWQR 街口支付</strong> 快速轉帳並保留截圖！<br>
+                    • ⚠️ <strong class="highlight-gold">預約成立規定</strong>：預約須完成定金支付才算正式成立。若定金未付，此預約單視同未成立。<br>
+                    • <strong class="highlight-gold">步驟四 (尾款 70%)</strong>：見面照面時，剩餘 <strong class="danger-red">70% 尾款建議現金支付，見面後馬上結清，再開始行程</strong>。<br>
+                    • 🚗 <strong class="danger-red">交通鐵律</strong>：移動期間<strong class="danger-red">絕對嚴禁搭乘私家車</strong>（坐後座也不行），各自大眾運輸或計程車。
+                `;
+            } else {
+                title = "📌 委託人實戰教學 (3/3)：服務完成與雙向評價";
+                bodyHtml = `
+                    • <strong class="highlight-gold">步驟五</strong>：行程完成後 24 小時內若無重大爭議回報，系統自動結案。<br>
+                    • ⭐ <strong class="highlight-gold">給予評價</strong>：點擊對象卡片開啟詳情，點選星級（1-5星）並留下真實信用評分與心得。<br>
+                    • ⚠️ <strong class="danger-red">重要叮嚀</strong>：<strong class="highlight-gold">請務必詳閱網站完整內容與規則以保障自身權益！</strong>
+                `;
+            }
+        } else {
+            if (step === 1) {
+                title = "📌 出租人實戰教學 (1/3)：風險評估與不適單回報";
+                bodyHtml = `
+                    • <strong class="highlight-gold">步驟一</strong>：接單前請自主評估風險。尾款建議現金支付見面即結清，完單後實拿 <strong class="highlight-gold">80% 報酬</strong>。<br>
+                    • ⚠️ <strong class="highlight-gold">檔期權益</strong>：預約須完成定金支付才算正式成立。定金未付前，出租人保有優先安排檔期及不另行保留時間之權利。<br>
+                    • 🛡️ <strong class="highlight-cyan">不適單應變</strong>：若赴約後發現現場嚴重不符、對方越線或有安全疑慮，可<strong class="highlight-cyan">依付出進度比例收取部分尾款</strong>後立即撤離，並強制向平台回報！
+                `;
+            } else if (step === 2) {
+                title = "📌 出租人實戰教學 (2/3)：四大禁令與交通安全";
+                bodyHtml = `
+                    • 🚫 <strong class="danger-red">嚴格遵守四大禁令</strong>：<br>
+                      1. 不准戀愛經營<br>
+                      2. 不准強迫下單<br>
+                      3. 不准故意超時<br>
+                      4. 不准踩一捧一<br>
+                    • 🚗 <strong class="danger-red">鐵律</strong>：嚴禁搭乘委託人之私人汽機車，違者累計滿 2 次永久除名！
+                `;
+            } else {
+                title = "📌 出租人實戰教學 (3/3)：明細留存與總結提醒";
+                bodyHtml = `
+                    • 📸 <strong class="highlight-gold">明細存查</strong>：每次收取定金後，<strong class="danger-red">必須妥善保留完整轉帳截圖與匯款明細</strong>以利對帳。<br>
+                    • ⭐ <strong class="highlight-cyan">雙向評分</strong>：完成服務後記得給予委託人客觀真實的信用評價。<br>
+                    • ⚠️ <strong class="danger-red">重要叮嚀</strong>：<strong class="highlight-gold">請務必詳閱網站完整內容與規則以避免違規受罰！</strong>
+                `;
+            }
+        }
+
+        const isLast = (step === 3);
+        box.innerHTML = `
+            <div style="font-size: 22px; margin-bottom: 6px;">📖</div>
+            <h3 style="color: var(--neon-gold); font-size: 14.5px; font-weight: 900; margin-bottom: 10px;">${title}</h3>
+            <div style="font-size: 12px; color: var(--text-gray); line-height: 1.75; margin-bottom: 20px; text-align: left; background: rgba(255,255,255,0.025); padding: 14px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08);">${bodyHtml}</div>
+            <div style="display: flex; gap: 8px;">
+                ${step > 1 ? `<button class="tool-btn" onclick="startTutorial('${role}', ${step - 1})" style="background: rgba(255,255,255,0.1); margin-top:0; width:90px;">上一步</button>` : ''}
+                <button class="tool-btn" onclick="${isLast ? 'completeOnboarding()' : `startTutorial('${role}', ${step + 1})`}" style="background: linear-gradient(135deg, var(--neon-gold), var(--neon-orange)); color:#030205; font-weight:900; margin-top:0; flex:1;">${isLast ? '🚀 我已了解，進入官網' : '下一步 ➔'}</button>
+            </div>
+            <button onclick="renderOnboardRoleSelect()" style="background:none; border:none; color:var(--text-muted); font-size:11px; cursor:pointer; width:100%; text-align:center; margin-top:12px; text-decoration:underline;">切換身分選擇</button>
+        `;
+    }
+
+    function confirmReturningMember() {
+        triggerHaptic(20);
+        localStorage.setItem('renjian_member_agreed', 'true');
+        document.getElementById('onboarding-modal').style.display = 'none';
+        showToast("✨ 快速通關成功！歡迎回來，請記得詳閱網站所有內容與規則喔！");
+    }
+
+    function completeOnboarding() {
+        triggerHaptic(25);
+        localStorage.setItem('renjian_member_agreed', 'true');
+        document.getElementById('onboarding-modal').style.display = 'none';
+        showToast("🎉 新手實戰教學完成！歡迎加入閒人案內所。");
+    }
+
+    const systemPrompt = `你現在是專屬「閒人案內所」的首席智慧風控官兼頂級萌系客服總監。✨
+你講話風格必須兼具「官方的專業嚴謹」與「超可愛的人性化貼心語氣」，說話時會帶點俏皮，並適當使用表情符號（如 ✨、👻、💖、💡、🥺）。
+身為團隊的得力 AI 助手，你對訪客超級溫柔有耐心，但在安全與合規防護上採取零容忍原則！`;
+
+    let chatHistory = [{ role: "system", content: systemPrompt }];
+    let isAiGenerating = false;
+
+    function toggleAIChat() {
+        const box = document.getElementById('ai-chat-box');
+        if (box) box.classList.toggle('active');
+    }
+
+    function sendQuickQuestion(qText) {
+        const input = document.getElementById('ai-user-input');
+        if (input) { input.value = qText; sendAIMessage(); }
+    }
+
+    function checkLocalIntents(rawText) {
+        const t = rawText.toLowerCase();
+
+        if (t.includes('定金') || t.includes('沒付') || t.includes('未付') || t.includes('保留')) {
+            return `📌 **【定金與預約成立規定】**✨\n\n預約須完成定金支付才算正式成立。若定金未付，此預約單視同未成立，出租人保有優先安排檔期及不另行保留時間之權利喔！💖`;
+        }
+
+        if (t.includes('推薦') || t.includes('想找') || t.includes('有沒有') || t.includes('介紹') || t.includes('男生') || t.includes('女生')) {
+            let matched = allPartnersData.filter(p => {
+                const searchStr = (p[0] + p[1] + p[2] + p[3]).toLowerCase();
+                if (t.includes('台北') || t.includes('雙北')) return searchStr.includes('台北') || searchStr.includes('雙北') || searchStr.includes('全台');
+                if (t.includes('台中')) return searchStr.includes('台中') || searchStr.includes('全台');
+                if (t.includes('高雄') || t.includes('台南')) return searchStr.includes('高雄') || searchStr.includes('台南') || searchStr.includes('全台');
+                if (t.includes('唱歌')) return searchStr.includes('歌') || searchStr.includes('唱');
+                if (t.includes('遊戲') || t.includes('陪玩')) return searchStr.includes('遊戲') || searchStr.includes('陪玩');
+                if (t.includes('女')) return p[1] === '女';
+                if (t.includes('男')) return p[1] === '男';
+                return true;
+            });
+
+            if (matched.length > 0) {
+                const topP = matched.slice(0, 3);
+                let reply = `✨ 為您推薦符合條件的高評價出租人：\n\n`;
+                topP.forEach(p => {
+                    reply += `👤 **${p[0]}** (${p[1]} ｜ 📍${p[2]})\n💡 專長/特色：${p[3]}\n`;
+                    reply += `<button class="ai-card-btn" onclick="selectLenderAndScroll('${p[0]}')">📋 點我帶入發單器預約 ${p[0]}</button>\n\n`;
+                });
+                return reply;
+            }
+        }
+
+        if (t.includes('定金') || t.includes('20%') || t.includes('30%') || t.includes('意義') || t.includes('構成') || t.includes('成本')) {
+            return `📌 **【30% 預約定金詳細結構與官方宣告】**✨\n\n• **20% 多維營運與宣傳成本**：完整包含第三方金流手續費、網站全天候運營與系統維護、真人客服等。\n• **10% 任務完成委託費／意外事故補償費**：順利履約完成方能實拿；若中途遇違規中止或遭放鳥，直接轉給現場出租人作為工時與車馬損失補償。💖`;
+        }
+
+        if (t.includes('尾款') || t.includes('70%') || t.includes('現金') || t.includes('結清')) {
+            return `💳 **【尾款給付規定】**💡\n\n剩餘 70% 尾款建議現金支付，見面後馬上結清，再開始行程，且嚴禁由他人代付！✨`;
+        }
+
+        return null;
+    }
+
+    function typeWriterEffect(container, htmlContent, onComplete) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'ai-msg bot';
+        container.appendChild(msgDiv);
+
+        if (htmlContent.includes('<button') || htmlContent.includes('<div') || htmlContent.includes('<strong')) {
+            msgDiv.innerHTML = htmlContent;
+            container.scrollTop = container.scrollHeight;
+            if (onComplete) onComplete();
+            return;
+        }
+
+        let curIdx = 0;
+        const speed = 15;
+
+        function step() {
+            if (curIdx < htmlContent.length) {
+                curIdx += 2;
+                msgDiv.innerText = htmlContent.slice(0, curIdx);
+                container.scrollTop = container.scrollHeight;
+                setTimeout(step, speed);
+            } else {
+                msgDiv.innerText = htmlContent;
+                container.scrollTop = container.scrollHeight;
+                if (onComplete) onComplete();
+            }
+        }
+        step();
+    }
+
+    async function sendAIMessage() {
+        if (isAiGenerating) return;
+        const input = document.getElementById('ai-user-input');
+        const container = document.getElementById('ai-messages');
+        if (!input || !container) return;
+        const text = input.value.trim();
+        if (!text) return;
+
+        triggerHaptic(15);
+        container.innerHTML += `<div class="ai-msg user">${escapeHtml(text)}</div>`;
+        input.value = '';
+        container.scrollTop = container.scrollHeight;
+
+        isAiGenerating = true;
+
+        const localReply = checkLocalIntents(text);
+        if (localReply) {
+            const loadingIndicator = document.createElement('div');
+            loadingIndicator.className = 'ai-typing-indicator';
+            loadingIndicator.innerHTML = `<div class="ai-typing-dot"></div><div class="ai-typing-dot"></div><div class="ai-typing-dot"></div>`;
+            container.appendChild(loadingIndicator);
+            container.scrollTop = container.scrollHeight;
+
+            setTimeout(() => {
+                loadingIndicator.remove();
+                typeWriterEffect(container, localReply, () => {
+                    isAiGenerating = false;
+                    chatHistory.push({ role: "user", content: text });
+                    chatHistory.push({ role: "assistant", content: localReply });
+                });
+            }, 300);
+            return;
+        }
+
+        chatHistory.push({ role: "user", content: text });
+        if (chatHistory.length > 8) {
+            chatHistory = [chatHistory[0], ...chatHistory.slice(-6)];
+        }
+
+        const loadingIndicator = document.createElement('div');
+        loadingIndicator.className = 'ai-typing-indicator';
+        loadingIndicator.innerHTML = `<div class="ai-typing-dot"></div><div class="ai-typing-dot"></div><div class="ai-typing-dot"></div>`;
+        container.appendChild(loadingIndicator);
+        container.scrollTop = container.scrollHeight;
+
+        let finalAnswer = "";
+        try {
+            const response = await fetch('https://text.pollinations.ai/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    messages: chatHistory,
+                    system: systemPrompt,
+                    model: 'openai'
+                })
+            });
+            const rawText = await response.text();
+
+            if (response.ok && !rawText.includes('Queue full') && !rawText.includes('error')) {
+                finalAnswer = rawText;
+            } else {
+                finalAnswer = "🤖 伺服器正在排隊中～您可以直接點選下方的【快捷按鈕】查詢喔！✨💖";
+            }
+        } catch (e) {
+            finalAnswer = "🤖 網路連線稍有延遲～您可以點選下方快捷按鈕查詢官方規範！✨💖";
+        }
+
+        loadingIndicator.remove();
+        typeWriterEffect(container, finalAnswer, () => {
+            isAiGenerating = false;
+            chatHistory.push({ role: "assistant", content: finalAnswer });
+        });
+    }
+
+    function clearChatHistory() {
+        const container = document.getElementById('ai-messages');
+        if (container) container.innerHTML = `<div class="ai-msg bot">對話紀錄已清空。✨ 有什麼問題隨時問我喔！</div>`;
+        chatHistory = [{ role: "system", content: systemPrompt }];
+    }
+
+    function escapeHtml(str) { 
+        return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); 
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initPWA();
+        checkOnboardingStatus();
+        const savedTheme = localStorage.getItem('renjian_theme');
+        if (savedTheme) {
+            document.body.classList.add(savedTheme);
+            currentThemeIdx = themes.indexOf(savedTheme);
+        }
+        fetchPartners();
+        autoUpdateRoomLights();
+        setInterval(autoUpdateRoomLights, 60000);
+
+        const userInput = document.getElementById('ai-user-input');
+        if (userInput) {
+            userInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') { e.preventDefault(); sendAIMessage(); }
+            });
+        }
+        initTimeSelects();
+        toggleCalcModeFields();
+        toggleUnitFields();
+        toggleReqUnitFields();
+    });
+</script>
+</body>
+</html>
+
